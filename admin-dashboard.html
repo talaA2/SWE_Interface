@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Admin Dashboard</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="topbar">
+  <div class="navbar container">
+
+    <div class="brand">⚡ Rasheed Admin Panel</div>
+
+    <div class="nav-links">
+      <a href="#">Log Out</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="container hero-content">
+    <h1>Welcome back, Admin 👋</h1>
+    <p>Here’s an overview of all reports and system activity.</p>
+  </div>
+  <div class="hero-curve"></div>
+</div>
+
+<!-- MAIN -->
+<div class="container main-content">
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="card stat-card">
+      <div>
+        <p>Total</p>
+        <h2 id="total">0</h2>
+      </div>
+    </div>
+
+    <div class="card stat-card">
+      <div>
+        <p>Pending</p>
+        <h2 id="pending">0</h2>
+      </div>
+    </div>
+
+    <div class="card stat-card">
+      <div>
+        <p>In Progress</p>
+        <h2 id="progress">0</h2>
+      </div>
+    </div>
+
+    <div class="card stat-card">
+      <div>
+        <p>Completed</p>
+        <h2 id="completed">0</h2>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEARCH -->
+  <div class="search-box">
+    <input type="text" id="search" placeholder="Search reports...">
+    
+    <select id="filter">
+      <option value="all">All Status</option>
+      <option value="Pending">Pending</option>
+      <option value="In Progress">In Progress</option>
+      <option value="Completed">Completed</option>
+    </select>
+  </div>
+
+  <!-- TABLE -->
+  <table id="table">
+
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Severity</th>
+      <th>Location</th>
+      <th>Date</th>
+      <th>Status</th>
+    </tr>
+
+    <!-- ROW -->
+    <tr data-status="Pending">
+	
+	
+	
+ <td> <a href="report-det.html"> RPT-017 </a> </td>
+      <td>Tala</td>
+      <td>💧 Water</td>
+      <td><span class="badge medium">Medium</span></td>
+      <td>Riyadh</td>
+      <td>Apr 4</td>
+      <td>
+        <span class="status-text pending">Pending</span><br>
+        <select onchange="updateStatus(this)">
+          <option>Pending</option>
+          <option>In Progress</option>
+          <option>Completed</option>
+        </select>
+      </td>
+    </tr>
+
+    <tr data-status="In Progress">
+      <td>RPT-002</td>
+      <td>Sara Khalid</td>
+      <td>⚡ Electricity</td>
+      <td><span class="badge medium">Medium</span></td>
+      <td>Jeddah</td>
+      <td>Apr 2</td>
+      <td>
+        <span class="status-text progress">In Progress</span><br>
+        <select onchange="updateStatus(this)">
+          <option>Pending</option>
+          <option selected>In Progress</option>
+          <option>Completed</option>
+        </select>
+      </td>
+    </tr>
+
+    <tr data-status="Completed">
+      <td>RPT-003</td>
+      <td>Noor Faisal</td>
+      <td>💧 Water</td>
+      <td><span class="badge high">High</span></td>
+      <td>Dammam</td>
+      <td>Apr 3</td>
+      <td>
+        <span class="status-text completed">Completed</span><br>
+        <select onchange="updateStatus(this)">
+          <option>Pending</option>
+          <option>In Progress</option>
+          <option selected>Completed</option>
+        </select>
+      </td>
+    </tr>
+
+    <tr data-status="Pending">
+      <td>RPT-004</td>
+      <td>Lama Saud</td>
+      <td>⚡ Electricity</td>
+      <td><span class="badge medium">Medium</span></td>
+      <td>Abha</td>
+      <td>Apr 4</td>
+      <td>
+        <span class="status-text pending">Pending</span><br>
+        <select onchange="updateStatus(this)">
+          <option>Pending</option>
+          <option>In Progress</option>
+          <option>Completed</option>
+        </select>
+      </td>
+    </tr>
+
+    <tr data-status="Pending">
+      <td>RPT-005</td>
+      <td>Huda Saleh</td>
+      <td>💧 Water</td>
+      <td><span class="badge low">Low</span></td>
+      <td>Tabuk</td>
+      <td>Apr 5</td>
+      <td>
+        <span class="status-text pending">Pending</span><br>
+        <select onchange="updateStatus(this)">
+          <option>Pending</option>
+          <option>In Progress</option>
+          <option>Completed</option>
+        </select>
+      </td>
+    </tr>
+
+  </table>
+
+</div>
+
+<script>
+// تحديث الإحصائيات
+function updateStats() {
+  let rows = document.querySelectorAll("#table tr[data-status]");
+  let total = rows.length;
+  let pending = 0, progress = 0, completed = 0;
+
+  rows.forEach(r => {
+    if (r.dataset.status === "Pending") pending++;
+    if (r.dataset.status === "In Progress") progress++;
+    if (r.dataset.status === "Completed") completed++;
+  });
+
+  document.getElementById("total").innerText = total;
+  document.getElementById("pending").innerText = pending;
+  document.getElementById("progress").innerText = progress;
+  document.getElementById("completed").innerText = completed;
+}
+
+// تغيير الحالة
+function updateStatus(select) {
+  let row = select.closest("tr");
+  let status = select.value;
+  row.dataset.status = status;
+
+  let text = row.querySelector(".status-text");
+  text.innerText = status;
+
+  text.className = "status-text " +
+    (status === "Pending" ? "pending" :
+    status === "In Progress" ? "progress" : "completed");
+
+  updateStats();
+}
+
+// فلتر
+document.getElementById("filter").addEventListener("change", function() {
+  let value = this.value;
+  let rows = document.querySelectorAll("#table tr[data-status]");
+
+  rows.forEach(r => {
+    r.style.display = (value === "all" || r.dataset.status === value) ? "" : "none";
+  });
+});
+
+// بحث
+document.getElementById("search").addEventListener("keyup", function() {
+  let value = this.value.toLowerCase();
+  let rows = document.querySelectorAll("#table tr[data-status]");
+
+  rows.forEach(r => {
+    let text = r.innerText.toLowerCase();
+    r.style.display = text.includes(value) ? "" : "none";
+  });
+});
+
+// تشغيل أولي
+updateStats();
+</script>
+
+</body>
+</html>

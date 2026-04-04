@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Report Details</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+.details-box {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  margin-top: 30px;
+}
+
+.location-table {
+  width: 100%;
+  margin-top: 15px;
+  border-collapse: collapse;
+}
+
+.location-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.label {
+  color: gray;
+  font-size: 13px;
+}
+
+.photo-box {
+  margin-top: 15px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #eee;
+}
+
+.photo-box img {
+  width: 100%;
+}
+
+.actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.btn-danger {
+  background: white;
+  border: 2px solid #e57373;
+  color: #d33;
+}
+</style>
+
+</head>
+
+<body>
+
+<button class="btn" onclick="history.back()">⬅ Back</button>
+
+<div class="container main-content">
+
+  <div class="details-box">
+
+    <!-- TITLE -->
+    <div style="display:flex; align-items:center; gap:10px;">
+      <div class="icon">💧</div>
+      <div>
+        <h2 style="margin:0;">RPT-17</h2>
+        <span style="color:gray;">Water Issue</span>
+      </div>
+    </div>
+
+    <!-- STATUS -->
+    <div style="margin-top:15px;">
+      <span class="badge" style="background:#eee;">Pending</span>
+      <span class="badge medium">Medium</span>
+    </div>
+
+    <!-- DESCRIPTION -->
+    <div style="margin-top:20px;">
+      <p class="label">DESCRIPTION</p>
+      <p>Water leakage near house</p>
+    </div>
+
+    <!-- LOCATION -->
+    <div style="margin-top:20px;">
+      <p class="label">LOCATION</p>
+
+      <table class="location-table">
+        <tr>
+          <td class="label">City</td>
+          <td>Riyadh</td>
+        </tr>
+        <tr>
+          <td class="label">Neighborhood</td>
+          <td>Al Yasmin</td>
+        </tr>
+        <tr>
+          <td class="label">Street</td>
+          <td>Street 12</td>
+        </tr>
+        <tr>
+          <td class="label">Building</td>
+          <td>8</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- DATE -->
+    <div style="margin-top:20px;">
+      <p class="label">SUBMITTED</p>
+      <p>Apr 4, 2026</p>
+    </div>
+
+    <!-- PHOTO -->
+    <div style="margin-top:20px;">
+      <p class="label">PHOTO</p>
+
+      <div class="photo-box">
+        <img src="logo.jpg">
+      </div>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="actions">
+      <button class="btn">✏️ Edit Report</button>
+      <button class="btn btn-danger">🗑 Delete Report</button>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -5,129 +5,50 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Reports</title>
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="style.css">
 
-<style>
-* { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  font-family: Arial;
-  background: #f6f7f8;
-}
-
-.container {
-  width: 1000px;
-  margin: auto;
-}
-
-/* NAVBAR */
-.topbar {
-  background: white;
-  border-bottom: 1px solid #eee;
-}
-
-.nav {
-  display: flex;
-  justify-content: space-between;
-  padding: 15px 0;
-  align-items: center;
-}
-
-.logo {
-  font-weight: bold;
-}
-
-nav a {
-  margin-left: 20px;
-  color: gray;
-}
-
-nav .active {
-  background: #eaf7f1;
-  padding: 6px 12px;
-  border-radius: 8px;
-  color: green;
-}
-
-/* TITLE */
-.header {
-  margin-top: 30px;
-}
-
-.header h1 {
-  margin: 0;
-}
-
-.header p {
-  color: gray;
-}
-
-/* SEARCH */
-.search-row {
-  display: flex;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.search {
-  flex: 1;
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-}
-
-.select {
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-}
-
-/* BOX */
-.box {
-  background: white;
-  border-radius: 12px;
-  margin-top: 20px;
-  padding: 50px;
-  text-align: center;
-  color: gray;
-}
-</style>
 </head>
 
 <body>
 
-<header class="topbar">
-  <div class="container nav">
-    <div class="logo">⚡ Rasheed</div>
+<!-- NAVBAR -->
+<div class="topbar">
+  <div class="navbar container">
 
-    <nav>
-      <a>Submit Report</a>
+    <div class="brand">⚡ Rasheed</div>
+
+    <div class="nav-links">
+      <a href="#">Submit Report</a>
       <a class="active">My Reports</a>
-      <a>Rewards</a>
-      <a>Notifications</a>
-    </nav>
+      <a href="#">Rewards</a>
+      <a href="#">Notifications</a>
+    </div>
+
   </div>
-</header>
+</div>
 
-<div class="container">
+<!-- MAIN -->
+<div class="container main-content">
 
-  <div class="header">
-    <h1>My Reports</h1>
-    <p>View and manage your submitted reports.</p>
+  <!-- HEADER -->
+  <div class="section-header">
+    <div>
+      <h1>My Reports</h1>
+      <p style="color: gray;">View and manage your submitted reports.</p>
+    </div>
   </div>
 
+  <!-- SEARCH (شكل فقط) -->
   <div class="search-row">
-    <input class="search" id="search" placeholder="Search reports...">
+    <input type="text" placeholder="Search reports...">
 
-    <select class="select" id="typeFilter">
+    <select>
       <option>All Types</option>
       <option>Water</option>
       <option>Electricity</option>
     </select>
 
-    <select class="select" id="severityFilter">
+    <select>
       <option>All Severity</option>
       <option>Low</option>
       <option>Medium</option>
@@ -135,36 +56,105 @@ nav .active {
     </select>
   </div>
 
-  <div class="box" id="results">
-    No reports found.
+  <!-- REPORTS -->
+
+ <a href="report-det.html" class="report-card">
+
+  <div class="icon">💧</div>
+
+  <div class="info">
+    <div class="top">
+      <b>RPT-017</b>
+      <span class="badge medium">Medium</span>
+    </div>
+
+    <div class="meta">Water leakage near house</div>
+    <div class="meta">Riyadh • Apr 4, 2026</div>
+  </div>
+
+  <div class="status-text pending">Pending</div>
+
+</a>
+
+  <div class="report-card">
+    <div class="icon">⚡</div>
+    <div class="info">
+      <div class="top">
+        <b>RPT-016</b>
+        <span class="badge high">High</span>
+      </div>
+      <div class="meta">Power outage in building</div>
+      <div class="meta">Jeddah • Apr 3, 2026</div>
+    </div>
+    <div class="status-text progress">In Progress</div>
+  </div>
+
+  <div class="report-card">
+    <div class="icon">💧</div>
+    <div class="info">
+      <div class="top">
+        <b>RPT-015</b>
+        <span class="badge low">Low</span>
+      </div>
+      <div class="meta">Small pipe issue</div>
+      <div class="meta">Dammam • Apr 2, 2026</div>
+    </div>
+    <div class="status-text completed">Completed</div>
+  </div>
+
+  <div class="report-card">
+    <div class="icon">⚡</div>
+    <div class="info">
+      <div class="top">
+        <b>RPT-014</b>
+        <span class="badge medium">Medium</span>
+      </div>
+      <div class="meta">Street light not working</div>
+      <div class="meta">Abha • Apr 1, 2026</div>
+    </div>
+    <div class="status-text pending">Pending</div>
+  </div>
+
+  <div class="report-card">
+    <div class="icon">💧</div>
+    <div class="info">
+      <div class="top">
+        <b>RPT-013</b>
+        <span class="badge high">High</span>
+      </div>
+      <div class="meta">Major water leakage</div>
+      <div class="meta">Tabuk • Apr 5, 2026</div>
+    </div>
+    <div class="status-text progress">In Progress</div>
+  </div>
+
+  <div class="report-card">
+    <div class="icon">⚡</div>
+    <div class="info">
+      <div class="top">
+        <b>RPT-012</b>
+        <span class="badge low">Low</span>
+      </div>
+      <div class="meta">Minor electricity issue</div>
+      <div class="meta">Mecca • Apr 4, 2026</div>
+    </div>
+    <div class="status-text completed">Completed</div>
+  </div>
+
+  <div class="report-card">
+    <div class="icon">💧</div>
+    <div class="info">
+      <div class="top">
+        <b>RPT-011</b>
+        <span class="badge medium">Medium</span>
+      </div>
+      <div class="meta">Low water pressure</div>
+      <div class="meta">Khobar • Apr 3, 2026</div>
+    </div>
+    <div class="status-text pending">Pending</div>
   </div>
 
 </div>
-
-<script>
-// بيانات تجريبية (ممكن تضيفي هنا)
-let reports = [];
-
-// عرض النتائج
-function render() {
-  const box = document.getElementById("results");
-
-  if (reports.length === 0) {
-    box.innerHTML = "No reports found.";
-  } else {
-    box.innerHTML = reports.map(r =>
-      `<div>${r.type} - ${r.severity}</div>`
-    ).join("");
-  }
-}
-
-// فلترة
-document.getElementById("search").oninput = render;
-document.getElementById("typeFilter").onchange = render;
-document.getElementById("severityFilter").onchange = render;
-
-render();
-</script>
 
 </body>
 </html>

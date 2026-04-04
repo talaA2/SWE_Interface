@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rasheed Dashboard</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="topbar">
+    <div class="container navbar">
+      <div class="brand">
+        <i class="fa-solid fa-bolt brand-icon"></i>
+        <span>Rasheed</span>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#"><i class="fa-regular fa-file-lines"></i> Submit Report</a>
+        <a href="#"><i class="fa-regular fa-clipboard"></i> My Reports</a>
+        <a href="#"><i class="fa-regular fa-star"></i> Rewards</a>
+        <a href="#"><i class="fa-regular fa-bell"></i> Notifications</a>
+        <a href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>Welcome back, tala!</h1>
+      <p>Here's an overview of your reporting activity.</p>
+    </div>
+    <div class="hero-curve"></div>
+  </section>
+
+  <!-- Main content -->
+  <main class="container main-content">
+    <section class="stats">
+      <div class="card stat-card">
+        <div>
+          <p>Total Reports</p>
+          <h2>0</h2>
+        </div>
+        <div class="icon-box green-box">
+          <i class="fa-regular fa-file-lines"></i>
+        </div>
+      </div>
+
+      <div class="card stat-card">
+        <div>
+          <p>Points Earned</p>
+          <h2>0</h2>
+        </div>
+        <div class="icon-box blue-box">
+          <i class="fa-regular fa-star"></i>
+        </div>
+      </div>
+
+      <div class="card stat-card">
+        <div>
+          <p>Badge Status</p>
+          <h2>Locked</h2>
+        </div>
+        <div class="icon-box gray-box">
+          <i class="fa-solid fa-trophy"></i>
+        </div>
+      </div>
+    </section>
+
+    <section class="reports-section">
+      <div class="section-header">
+        <h3>Recent Reports</h3>
+        <a href="#" class="view-all">View all <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="card reports-box">
+        <div class="empty-state">
+          <i class="fa-regular fa-file-lines empty-icon"></i>
+          <p>No reports yet. Start by submitting your first report.</p>
+          <a href="#" class="submit-link">Submit a report</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

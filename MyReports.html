@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Reports</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #f6f7f8;
+}
+
+.container {
+  width: 1000px;
+  margin: auto;
+}
+
+/* NAVBAR */
+.topbar {
+  background: white;
+  border-bottom: 1px solid #eee;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+  align-items: center;
+}
+
+.logo {
+  font-weight: bold;
+}
+
+nav a {
+  margin-left: 20px;
+  color: gray;
+}
+
+nav .active {
+  background: #eaf7f1;
+  padding: 6px 12px;
+  border-radius: 8px;
+  color: green;
+}
+
+/* TITLE */
+.header {
+  margin-top: 30px;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.header p {
+  color: gray;
+}
+
+/* SEARCH */
+.search-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.search {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+.select {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+/* BOX */
+.box {
+  background: white;
+  border-radius: 12px;
+  margin-top: 20px;
+  padding: 50px;
+  text-align: center;
+  color: gray;
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="container nav">
+    <div class="logo">⚡ Rasheed</div>
+
+    <nav>
+      <a>Submit Report</a>
+      <a class="active">My Reports</a>
+      <a>Rewards</a>
+      <a>Notifications</a>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="header">
+    <h1>My Reports</h1>
+    <p>View and manage your submitted reports.</p>
+  </div>
+
+  <div class="search-row">
+    <input class="search" id="search" placeholder="Search reports...">
+
+    <select class="select" id="typeFilter">
+      <option>All Types</option>
+      <option>Water</option>
+      <option>Electricity</option>
+    </select>
+
+    <select class="select" id="severityFilter">
+      <option>All Severity</option>
+      <option>Low</option>
+      <option>Medium</option>
+      <option>High</option>
+    </select>
+  </div>
+
+  <div class="box" id="results">
+    No reports found.
+  </div>
+
+</div>
+
+<script>
+// بيانات تجريبية (ممكن تضيفي هنا)
+let reports = [];
+
+// عرض النتائج
+function render() {
+  const box = document.getElementById("results");
+
+  if (reports.length === 0) {
+    box.innerHTML = "No reports found.";
+  } else {
+    box.innerHTML = reports.map(r =>
+      `<div>${r.type} - ${r.severity}</div>`
+    ).join("");
+  }
+}
+
+// فلترة
+document.getElementById("search").oninput = render;
+document.getElementById("typeFilter").onchange = render;
+document.getElementById("severityFilter").onchange = render;
+
+render();
+</script>
+
+</body>
+</html>

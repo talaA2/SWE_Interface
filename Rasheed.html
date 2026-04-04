@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rasheed Login</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="login-wrapper">
+    <div class="login-card">
+      <div class="brand">
+        <div class="logo-icon">💧⚡</div>
+        <h1>Rasheed</h1>
+      </div>
+
+      <h2>Welcome back</h2>
+      <p class="subtitle">Log in to your Rasheed account</p>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input
+            type="text"
+            id="phone"
+            placeholder="05XXXXXXXX"
+            maxlength="10"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="password-box">
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter your password"
+            />
+            <button type="button" id="togglePassword" class="eye-btn">👁</button>
+          </div>
+        </div>
+
+        <button type="submit" class="login-btn">Log In</button>
+      </form>
+
+      <p class="signup-text">
+        Don't have an account?
+        <a href="#">Create one</a>
+      </p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

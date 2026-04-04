@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Submit Report - Rasheed</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      background: #f6f7f8;
+      color: #1f2937;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(100%, 980px);
+      margin: 0 auto;
+      padding: 0 18px;
+    }
+
+    .topbar {
+      background: #fff;
+      border-bottom: 1px solid #e9ecef;
+      height: 72px;
+      display: flex;
+      align-items: center;
+    }
+
+    .topbar-inner {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 17px;
+      color: #1f2937;
+      white-space: nowrap;
+    }
+
+    .brand i {
+      color: #22a06b;
+      font-size: 21px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      color: #6b7280;
+      font-size: 15px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      transition: 0.2s;
+    }
+
+    .nav-link:hover {
+      background: #f3f4f6;
+    }
+
+    .nav-link.active {
+      background: #e9f8f0;
+      color: #22a06b;
+      font-weight: 700;
+    }
+
+    .nav-link i {
+      font-size: 15px;
+    }
+
+    .helper-text {
+      text-align: center;
+      color: #6b7280;
+      font-size: 15px;
+      margin: 22px 0 18px;
+    }
+
+    .form-card {
+      background: #fff;
+      border: 1px solid #e7e7e7;
+      border-radius: 18px;
+      width: min(100%, 625px);
+      margin: 0 auto 32px;
+      padding: 28px 30px 24px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    }
+
+    .section-title {
+      margin: 0 0 12px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #2f3747;
+    }
+
+    .issue-types {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 26px;
+    }
+
+    .issue-card {
+      border: 2px solid #dfe3e8;
+      border-radius: 14px;
+      background: #fff;
+      min-height: 122px;
+      padding: 18px 16px 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+      position: relative;
+    }
+
+    .issue-card i {
+      font-size: 34px;
+      color: #7c8594;
+    }
+
+    .issue-card .issue-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: #2f3747;
+    }
+
+    .issue-card .issue-desc {
+      font-size: 14px;
+      color: #7b8391;
+    }
+
+    .issue-card.active {
+      border-color: #22a06b;
+      background: #f5fbf8;
+    }
+
+    .issue-card.active i,
+    .issue-card.active .issue-name {
+      color: #22a06b;
+    }
+
+    .issue-card.active::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      width: 48px;
+      height: 3px;
+      background: #22a06b;
+      border-radius: 999px;
+    }
+
+    textarea,
+    input[type="text"] {
+      width: 100%;
+      border: 1px solid #d9dde3;
+      border-radius: 14px;
+      outline: none;
+      font-family: inherit;
+      transition: 0.2s;
+      color: #1f2937;
+      background: #fff;
+    }
+
+    textarea:focus,
+    input[type="text"]:focus {
+      border-color: #22a06b;
+      box-shadow: 0 0 0 3px rgba(34,160,107,0.10);
+    }
+
+    textarea {
+      min-height: 102px;
+      resize: vertical;
+      padding: 16px 14px;
+      font-size: 15px;
+    }
+
+    .counter {
+      margin-top: 8px;
+      color: #7b8391;
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+
+    .location-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #2f3747;
+    }
+
+    .field input {
+      height: 38px;
+      padding: 0 14px;
+      font-size: 14px;
+      color: #1f2937;
+    }
+
+    .field input::placeholder,
+    textarea::placeholder {
+      color: #9aa1ad;
+    }
+
+    .severity-row {
+      display: flex;
+      gap: 12px;
+      margin: 10px 0 24px;
+      flex-wrap: wrap;
+    }
+
+    .severity-btn {
+      border: 1.5px solid #d5dae0;
+      background: #fff;
+      color: #7b8391;
+      border-radius: 999px;
+      height: 40px;
+      min-width: 72px;
+      padding: 0 20px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .severity-btn:hover {
+      border-color: #bfc6cf;
+    }
+
+    .severity-btn.active {
+      border-color: #22a06b;
+      color: #22a06b;
+      background: #effaf4;
+    }
+
+    .upload-box {
+      border: 2px dashed #d9dde3;
+      border-radius: 16px;
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-align: center;
+      cursor: pointer;
+      padding: 18px;
+      transition: 0.2s;
+      margin-top: 10px;
+      margin-bottom: 24px;
+      background: #fff;
+    }
+
+    .upload-box:hover {
+      background: #fafafa;
+    }
+
+    .upload-box i {
+      font-size: 38px;
+      color: #6f7785;
+    }
+
+    .upload-main {
+      color: #6f7785;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .upload-sub {
+      color: #8c94a1;
+      font-size: 14px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      height: 46px;
+      border: none;
+      border-radius: 12px;
+      background: #22a06b;
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+      font-family: inherit;
+    }
+
+    .submit-btn:hover {
+      background: #1d8b5d;
+    }
+
+    @media (max-width: 820px) {
+      .topbar {
+        height: auto;
+        padding: 14px 0;
+      }
+
+      .topbar-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        gap: 6px;
+      }
+
+      .issue-types,
+      .location-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-card {
+        padding: 22px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <i class="fa-solid fa-bolt"></i>
+        <span>Rasheed</span>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#" class="nav-link active"><i class="fa-regular fa-file-lines"></i> Submit Report</a>
+        <a href="#" class="nav-link"><i class="fa-regular fa-clipboard"></i> My Reports</a>
+        <a href="#" class="nav-link"><i class="fa-regular fa-award"></i> Rewards</a>
+        <a href="#" class="nav-link"><i class="fa-regular fa-bell"></i> Notifications</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <p class="helper-text">Help us identify utility issues in your area.</p>
+
+    <form class="form-card" id="reportForm">
+      <h3 class="section-title">Issue Type</h3>
+
+      <div class="issue-types">
+        <button type="button" class="issue-card" data-type="Water">
+          <i class="fa-regular fa-droplet"></i>
+          <div class="issue-name">Water</div>
+          <div class="issue-desc">Water leak or issue</div>
+        </button>
+
+        <button type="button" class="issue-card active" data-type="Electricity">
+          <i class="fa-solid fa-bolt"></i>
+          <div class="issue-name">Electricity</div>
+          <div class="issue-desc">Power outage or issue</div>
+        </button>
+      </div>
+
+      <input type="hidden" id="issueType" value="Electricity">
+
+      <h3 class="section-title">Description</h3>
+      <textarea id="description" placeholder="Describe the issue in detail (min 20 characters)..."></textarea>
+      <div class="counter" id="counter">0/20 characters minimum</div>
+
+      <div class="location-grid">
+        <div class="field">
+          <label for="neighborhood">Neighborhood</label>
+          <input type="text" id="neighborhood" placeholder="e.g. Al Olaya">
+        </div>
+
+        <div class="field">
+          <label for="streetName">Street Name</label>
+          <input type="text" id="streetName" placeholder="e.g. King Fahd Rd">
+        </div>
+
+        <div class="field">
+          <label for="buildingNo">Building No.</label>
+          <input type="text" id="buildingNo" placeholder="e.g. 42">
+        </div>
+      </div>
+
+      <h3 class="section-title">Severity Level</h3>
+      <div class="severity-row">
+        <button type="button" class="severity-btn" data-severity="Low">Low</button>
+        <button type="button" class="severity-btn active" data-severity="Medium">Medium</button>
+        <button type="button" class="severity-btn" data-severity="High">High</button>
+      </div>
+
+      <input type="hidden" id="severityLevel" value="Medium">
+
+      <h3 class="section-title">Photo (optional)</h3>
+      <div class="upload-box" id="uploadBox">
+        <i class="fa-solid fa-cloud-arrow-up"></i>
+        <div class="upload-main" id="uploadMain">Click to upload or drag & drop</div>
+        <div class="upload-sub">PNG, JPG up to 5MB</div>
+        <input type="file" id="photoInput" accept=".png,.jpg,.jpeg" hidden>
+      </div>
+
+      <button type="submit" class="submit-btn">Submit Report</button>
+    </form>
+  </div>
+
+  <script>
+    const issueCards = document.querySelectorAll(".issue-card");
+    const issueTypeInput = document.getElementById("issueType");
+
+    issueCards.forEach(card => {
+      card.addEventListener("click", () => {
+        issueCards.forEach(c => c.classList.remove("active"));
+        card.classList.add("active");
+        issueTypeInput.value = card.dataset.type;
+      });
+    });
+
+    const severityButtons = document.querySelectorAll(".severity-btn");
+    const severityInput = document.getElementById("severityLevel");
+
+    severityButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        severityButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        severityInput.value = btn.dataset.severity;
+      });
+    });
+
+    const description = document.getElementById("description");
+    const counter = document.getElementById("counter");
+
+    description.addEventListener("input", () => {
+      counter.textContent = `${description.value.length}/20 characters minimum`;
+    });
+
+    const uploadBox = document.getElementById("uploadBox");
+    const photoInput = document.getElementById("photoInput");
+    const uploadMain = document.getElementById("uploadMain");
+
+    uploadBox.addEventListener("click", () => {
+      photoInput.click();
+    });
+
+    photoInput.addEventListener("change", () => {
+      if (photoInput.files.length > 0) {
+        uploadMain.textContent = photoInput.files[0].name;
+      }
+    });
+
+    const form = document.getElementById("reportForm");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const desc = description.value.trim();
+      const neighborhood = document.getElementById("neighborhood").value.trim();
+      const streetName = document.getElementById("streetName").value.trim();
+      const buildingNo = document.getElementById("buildingNo").value.trim();
+
+      if (desc.length < 20) {
+        alert("Description must be at least 20 characters.");
+        return;
+      }
+
+      if (!neighborhood || !streetName || !buildingNo) {
+        alert("Please fill in all location fields.");
+        return;
+      }
+
+      alert("Report submitted successfully!");
+    });
+  </script>
+</body>
+</html>

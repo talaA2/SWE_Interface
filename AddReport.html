@@ -541,6 +541,7 @@ form.addEventListener("submit", (e) => {
   const desc = description.value.trim();
   const neighborhood = document.getElementById("neighborhood").value.trim();
   const streetName = document.getElementById("streetName").value.trim();
+  const city = document.getElementById("City").value.trim();
   const buildingNo = document.getElementById("buildingNo").value.trim();
 
   if (desc.length < 20) {
@@ -548,10 +549,10 @@ form.addEventListener("submit", (e) => {
     return;
   }
 
-  if (!neighborhood || !streetName || !buildingNo) {
-    alert("Please fill in all location fields.");
-    return;
-  }
+ if (!neighborhood || !streetName || !city || !buildingNo) {
+  alert("Please fill in all location fields.");
+  return;
+}
 
   
   alert("Report submitted successfully!");

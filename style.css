@@ -1209,3 +1209,36 @@ textarea {
   width: 100%;
   display: block;
 }
+
+.footer {
+  background: #111827;
+  color: #ffffff;
+  margin-top: 40px;
+  padding: 30px 20px;
+}
+
+.footer-container {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: center;
+}
+
+.footer-left h3 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.footer-left p {
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+
+
+.footer-copy p {
+  font-size: 13px;
+  color: #6b7280;
+}

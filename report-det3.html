@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Report Details</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+.details-box {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  margin-top: 30px;
+}
+
+.location-table {
+  width: 100%;
+  margin-top: 15px;
+  border-collapse: collapse;
+}
+
+.location-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.label {
+  color: gray;
+  font-size: 13px;
+}
+
+.photo-box {
+  margin-top: 15px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #eee;
+}
+
+.photo-box img {
+  width: 100%;
+}
+
+.actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.back-btn {
+margin-left: 10px;
+margin-top: 10px;
+}
+
+.btn-danger {
+  background: white;
+  border: 2px solid #e57373;
+  color: #d33;
+}
+</style>
+
+</head>
+
+<body>
+
+<button class="btn back-btn" onclick="history.back()">⬅ Back</button>
+
+<div class="container main-content">
+
+  <div class="details-box">
+
+    <!-- TITLE -->
+    <div style="display:flex; align-items:center; gap:10px;">
+      <div class="icon">💧</div>
+      <div>
+        <h2 style="margin:0;">RPT-03</h2>
+        <span style="color:gray;">Water Issue</span>
+      </div>
+    </div>
+
+    <!-- STATUS -->
+    <div style="margin-top:15px;">
+      <span class="badge" style="background:#eee;">Completed</span>
+      <span class="badge low">Low</span>
+    </div>
+
+    <!-- DESCRIPTION -->
+    <div style="margin-top:20px;">
+      <p class="label">DESCRIPTION</p>
+      <p>Small pipe issue</p>
+    </div>
+
+    <!-- LOCATION -->
+    <div style="margin-top:20px;">
+      <p class="label">LOCATION</p>
+
+      <table class="location-table">
+        <tr>
+          <td class="label">City</td>
+          <td>Dammam</td>
+        </tr>
+        <tr>
+          <td class="label">Neighborhood</td>
+          <td>Al Faisaliyah</td>
+        </tr>
+        <tr>
+          <td class="label">Street</td>
+          <td>Street 5</td>
+        </tr>
+        <tr>
+          <td class="label">Building</td>
+          <td>3</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- DATE -->
+    <div style="margin-top:20px;">
+      <p class="label">SUBMITTED</p>
+      <p>Apr 2, 2026</p>
+    </div>
+
+    <!-- PHOTO -->
+    <div style="margin-top:20px;">
+      <p class="label">PHOTO</p>
+
+      <div class="photo-box">
+        <img src="images\report-det3.jpg">
+      </div>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="actions" id="actionsBox"></div>
+
+  </div>
+
+</div>
+
+<!-- JS -->
+<script>
+
+const params = new URLSearchParams(window.location.search);
+const role = params.get("role");
+
+const actionsBox = document.getElementById("actionsBox");
+
+if (role === "admin") {
+
+  actionsBox.innerHTML = `
+    <select class="btn">
+      <option>Pending</option>
+      <option>In Progress</option>
+      <option selected>Completed</option>
+    </select>
+  `;
+
+} else {
+
+  actionsBox.innerHTML = "";
+
+}
+
+</script>
+
+</body>
+</html>

@@ -67,23 +67,23 @@
 
     <!-- TITLE -->
     <div style="display:flex; align-items:center; gap:10px;">
-      <div class="icon">💧</div>
+      <div class="icon">⚡</div>
       <div>
-        <h2 style="margin:0;">RPT-01</h2>
-        <span style="color:gray;">Water Issue</span>
+        <h2 style="margin:0;">RPT-02</h2>
+        <span style="color:gray;">Power Issue</span>
       </div>
     </div>
 
     <!-- STATUS -->
     <div style="margin-top:15px;">
-      <span class="badge" style="background:#eee;">Pending</span>
-      <span class="badge medium">Medium</span>
+      <span class="badge" style="background:#eee;">In Progress</span>
+      <span class="badge high">High</span>
     </div>
 
     <!-- DESCRIPTION -->
     <div style="margin-top:20px;">
       <p class="label">DESCRIPTION</p>
-      <p>Water leakage near house</p>
+      <p>Power outage in building</p>
     </div>
 
     <!-- LOCATION -->
@@ -93,19 +93,19 @@
       <table class="location-table">
         <tr>
           <td class="label">City</td>
-          <td>Riyadh</td>
+          <td>Jeddah</td>
         </tr>
         <tr>
           <td class="label">Neighborhood</td>
-          <td>Al Yasmin</td>
+          <td>Al Rawdah</td>
         </tr>
         <tr>
           <td class="label">Street</td>
-          <td>Street 12</td>
+          <td>Street 8</td>
         </tr>
         <tr>
           <td class="label">Building</td>
-          <td>8</td>
+          <td>15</td>
         </tr>
       </table>
     </div>
@@ -113,7 +113,7 @@
     <!-- DATE -->
     <div style="margin-top:20px;">
       <p class="label">SUBMITTED</p>
-      <p>Apr 4, 2026</p>
+      <p>Apr 3, 2026</p>
     </div>
 
     <!-- PHOTO -->
@@ -121,7 +121,7 @@
       <p class="label">PHOTO</p>
 
       <div class="photo-box">
-        <img src="report-det.jpg">
+        <img src="images/report-det2">
       </div>
     </div>
 
@@ -145,7 +145,7 @@ if (role === "admin") {
   actionsBox.innerHTML = `
     <select class="btn">
       <option>Pending</option>
-      <option>In Progress</option>
+      <option selected>In Progress</option>
       <option>Completed</option>
     </select>
   `;

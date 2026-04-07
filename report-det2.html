@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,8 +17,8 @@
 
 .location-table {
   width: 100%;
-  margin-top: 15px;
   border-collapse: collapse;
+  margin-top: 10px;
 }
 
 .location-table td {
@@ -33,7 +32,7 @@
 }
 
 .photo-box {
-  margin-top: 15px;
+  margin-top: 10px;
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid #eee;
@@ -44,15 +43,9 @@
 }
 
 .actions {
+  margin-top: 25px;
   display: flex;
   gap: 15px;
-  margin-top: 25px;
-}
-
-.btn-danger {
-  background: white;
-  border: 2px solid #e57373;
-  color: #d33;
 }
 </style>
 
@@ -60,17 +53,29 @@
 
 <body>
 
-<button class="btn" onclick="history.back()">⬅ Back</button>
+<!-- NAVBAR -->
+<div class="topbar">
+  <div class="navbar container">
+    <div class="brand">⚡ Rasheed</div>
+
+    <div class="nav-links">
+      <a href="#">Submit Report</a>
+      <a href="#">My Reports</a>
+      <a href="#">Rewards</a>
+      <a href="#">Notifications</a>
+    </div>
+  </div>
+</div>
 
 <div class="container main-content">
 
   <div class="details-box">
 
     <!-- TITLE -->
-    <div style="display:flex; align-items:center; gap:10px;">
+    <div style="display:flex; gap:10px;">
       <div class="icon">💧</div>
       <div>
-        <h2 style="margin:0;">RPT-01</h2>
+        <h2 style="margin:0;">RPT-001</h2>
         <span style="color:gray;">Water Issue</span>
       </div>
     </div>
@@ -92,22 +97,10 @@
       <p class="label">LOCATION</p>
 
       <table class="location-table">
-        <tr>
-          <td class="label">City</td>
-          <td>Riyadh</td>
-        </tr>
-        <tr>
-          <td class="label">Neighborhood</td>
-          <td>Al Yasmin</td>
-        </tr>
-        <tr>
-          <td class="label">Street</td>
-          <td>Street 12</td>
-        </tr>
-        <tr>
-          <td class="label">Building</td>
-          <td>8</td>
-        </tr>
+        <tr><td class="label">City</td><td>Riyadh</td></tr>
+        <tr><td class="label">Neighborhood</td><td>Al Yasmin</td></tr>
+        <tr><td class="label">Street</td><td>Street 12</td></tr>
+        <tr><td class="label">Building</td><td>8</td></tr>
       </table>
     </div>
 
@@ -120,21 +113,46 @@
     <!-- PHOTO -->
     <div style="margin-top:20px;">
       <p class="label">PHOTO</p>
-
       <div class="photo-box">
-        <img src="report-det.jpg">
+        <img src="logo.jpg">
       </div>
     </div>
 
     <!-- ACTIONS -->
     <div class="actions">
-      <button class="btn">✏️ Edit Report</button>
-      <button class="btn btn-danger">🗑 Delete Report</button>
+
+      <!-- USER -->
+      <div id="userActions">
+        <button class="btn">✏️ Edit</button>
+        <button class="btn btn-danger">🗑 Delete</button>
+      </div>
+
+      <!-- ADMIN -->
+      <div id="adminActions">
+        <select class="select">
+          <option>Pending</option>
+          <option>In Progress</option>
+          <option>Completed</option>
+        </select>
+      </div>
+
     </div>
 
   </div>
 
 </div>
+
+<!-- JS -->
+<script>
+let params = new URLSearchParams(window.location.search);
+let role = params.get("role");
+
+if (role === "admin") {
+  document.getElementById("userActions").style.display = "none";
+} else {
+  document.getElementById("adminActions").style.display = "none";
+}
+</script>
 
 </body>
 </html>

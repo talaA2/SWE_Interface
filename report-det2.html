@@ -201,8 +201,27 @@ if (role === "admin") {
 
   actionsBox.innerHTML = `
     <button class="btn" onclick="window.location.href='EditReport2.html'">✏️ Edit Report</button>
-    <button class="btn btn-danger">🗑 Delete Report</button>
-  `;
+<button class="btn btn-danger" onclick="deleteReport()">🗑 Delete Report</button>  `;
+}
+
+  function deleteReport() {
+
+  let confirmDelete = confirm("Are you sure you want to delete this report?");
+
+  if (confirmDelete) {
+
+    let msg = document.createElement("p");
+    msg.textContent = "Report deleted successfully!";
+    msg.className = "status-text completed";
+
+    document.querySelector(".actions").appendChild(msg);
+
+    setTimeout(() => {
+      window.location.href = "MyReports.html";
+    }, 600);
+
+  }
+
 }
 
 </script>

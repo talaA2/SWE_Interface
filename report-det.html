@@ -64,49 +64,18 @@ margin-top: 10px;
 </style>
 
 </head>
-<header class="topbar">
-  <div class="container topbar-inner">
+<header class="topbar" id="actionheader">
 
-    <div class="brand">
-    <img src="images/logo.png" alt="Logo">
-      <span class="brand-text">Rasheed</span>
-    </div>
-
-   <!-- <nav class="nav-links">
-  <a href="AddReport.html" class="nav-link">
-    <i class="fa-regular fa-file-lines"></i> Add Report
-  </a>
-
-  <a href="MyReports.html" class="nav-link active">
-    <i class="fa-regular fa-clipboard"></i> My Reports
-  </a>
-
-  <a href="rewards.html" class="nav-link">
-    <i class="fa-regular fa-star"></i> Rewards
-  </a>
-
-  <a href="Notifications.html" class="nav-link">
-    <i class="fa-regular fa-bell"></i> Notifications
-  </a> -->
-
-  <a href="index.html" class="nav-link logout">
-    <i class="fa-solid fa-right-from-bracket"></i> Log Out
-  </a>
-</nav>
-
-  </div>
 </header>
+
 
 <body>
 
- <button class="btn back-btn" onclick="history.back()">⬅ Back</button> 
 
-<div class="container main-content">
-
-  <h1 class="page-title">Report Details</h1>
-   <!-- <a href="MyReports.html" class="back-btn">
-      <i class="fa-solid fa-arrow-left"></i> Back
-    </a> -->
+<div class="container main-content" >
+  <div id="actionbtn">
+    
+  </div>
 
   <div class="details-box">
 
@@ -172,8 +141,7 @@ margin-top: 10px;
 
     <!-- ACTIONS -->
     <div class="actions" id="actionsBox">
-      <!--<button class="btn" onclick="window.location.href='EditReport.html'">✏️ Edit Report</button>
-      <button class="btn btn-danger">🗑 Delete Report</button>-->
+      
     </div>
 
   </div>
@@ -187,6 +155,8 @@ const params = new URLSearchParams(window.location.search);
 const role = params.get("role");
 
 const actionsBox = document.getElementById("actionsBox");
+const actionheader = document.getElementById("actionheader");
+const actionbtn = document.getElementById("actionbtn");
 
 if (role === "admin") {
 
@@ -198,6 +168,28 @@ if (role === "admin") {
     </select>
   `;
 
+  actionheader.innerHTML = `
+    <div class="container topbar-inner">
+
+    <div class="brand">
+      <a href ="admin-dashboard.html"><img src="images/logo.png" alt="Logo"></a>
+      <span class="brand-text"><a href ="admin-dashboard.html">Rasheed</span></a>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link logout">
+    <i class="fa-solid fa-right-from-bracket"></i> Log Out
+  </a>
+</nav>
+  </div>
+  `;
+
+  actionbtn.innerHTML = `
+  <h1 class="page-title" id="actionbtn">Report Details</h1>
+    <a href="admin-dashboard.html" class="back-btn">
+      <i class="fa-solid fa-arrow-left"></i> Back
+    </a>
+   `;
+
 } else {
 
   actionsBox.innerHTML = `
@@ -205,6 +197,42 @@ if (role === "admin") {
   <button class="btn btn-danger" onclick="deleteReport()">🗑 Delete Report</button>
 `;
 
+actionheader.innerHTML = `
+    <div class="container topbar-inner">
+
+    <div class="brand">
+      <a href ="main.html"><img src="images/logo.png" alt="Logo"></a>
+      <span class="brand-text"><a href ="main.html">Rasheed</span></a>
+    </div>
+    <nav class="nav-links">
+      <a href="AddReport.html" class="nav-link">
+    <i class="fa-regular fa-file-lines"></i> Add Report
+  </a>
+
+  <a href="MyReports.html" class="nav-link active">
+    <i class="fa-regular fa-clipboard"></i> My Reports
+  </a>
+
+  <a href="rewards.html" class="nav-link">
+    <i class="fa-regular fa-star"></i> Rewards
+  </a>
+
+  <a href="Notifications.html" class="nav-link">
+    <i class="fa-regular fa-bell"></i> Notifications
+  </a> 
+      <a href="index.html" class="nav-link logout">
+    <i class="fa-solid fa-right-from-bracket"></i> Log Out
+  </a>
+</nav>
+  </div>
+  `;
+
+  actionbtn.innerHTML = `
+  <h1 class="page-title" id="actionbtn">Report Details</h1>
+<a href="MyReports.html" class="back-btn">
+      <i class="fa-solid fa-arrow-left"></i> Back
+    </a>
+`;
 }
 
   function goToEdit() {

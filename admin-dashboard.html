@@ -11,9 +11,6 @@
 <body>
 
 <!-- NAVBAR -->
-
-
-
     <header class="topbar">
     <div class="container topbar-inner">
       <div class="brand">
@@ -154,7 +151,7 @@
 </div>
 
 <script>
-// تحديث الإحصائيات
+
 function updateStats() {
   let rows = document.querySelectorAll("#table tr[data-status]");
   let total = rows.length;
@@ -172,7 +169,6 @@ function updateStats() {
   document.getElementById("completed").innerText = completed;
 }
 
-// تغيير الحالة
 function updateStatus(select) {
   let row = select.closest("tr");
   let status = select.value;
@@ -188,7 +184,6 @@ function updateStatus(select) {
   updateStats();
 }
 
-// فلتر
 document.getElementById("filter").addEventListener("change", function() {
   let value = this.value;
   let rows = document.querySelectorAll("#table tr[data-status]");
@@ -198,7 +193,6 @@ document.getElementById("filter").addEventListener("change", function() {
   });
 });
 
-// بحث
 document.getElementById("search").addEventListener("keyup", function() {
   let value = this.value.toLowerCase();
   let rows = document.querySelectorAll("#table tr[data-status]");
@@ -209,7 +203,6 @@ document.getElementById("search").addEventListener("keyup", function() {
   });
 });
 
-// تشغيل أولي
 updateStats();
 </script>
 

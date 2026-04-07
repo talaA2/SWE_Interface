@@ -38,12 +38,6 @@ const dashboardData = {
   pointsEarned: 0,
   badgeStatus: "Locked",
   reports: [
-    // Example:
-    // {
-    //   title: "Water leak in Al Malqa",
-    //   location: "Al Malqa, Riyadh",
-    //   status: "Pending"
-    // }
   ]
 };
 
@@ -101,7 +95,6 @@ function renderDashboard() {
 
 renderDashboard();
 
-// اختيار نوع المشكلة
 document.querySelectorAll(".type").forEach(el => {
   el.addEventListener("click", () => {
     document.querySelectorAll(".type").forEach(t => t.classList.remove("active"));
@@ -109,7 +102,6 @@ document.querySelectorAll(".type").forEach(el => {
   });
 });
 
-// اختيار severity
 document.querySelectorAll(".severity button").forEach(btn => {
   btn.addEventListener("click", () => {
     document.querySelectorAll(".severity button").forEach(b => b.classList.remove("active"));
@@ -117,7 +109,6 @@ document.querySelectorAll(".severity button").forEach(btn => {
   });
 });
 
-// عداد الأحرف
 const textarea = document.getElementById("desc");
 const counter = document.getElementById("counter");
 
@@ -125,7 +116,6 @@ textarea.addEventListener("input", () => {
   counter.textContent = `${textarea.value.length}/20 characters minimum`;
 });
 
-// رفع صورة
 const uploadBox = document.getElementById("uploadBox");
 const fileInput = document.getElementById("fileInput");
 
@@ -136,32 +126,4 @@ fileInput.addEventListener("change", () => {
     uploadBox.innerHTML = `✔ Uploaded: ${fileInput.files[0].name}`;
   }
 });
-
-/* ---- Register Form-----
-const form = document.getElementById("registerForm");
-const errorText = document.getElementById("errorText");
-
-form.addEventListener("submit", function(e) {
-  e.preventDefault();
-
-  const inputs = form.querySelectorAll("input");
-  let isValid = true;
-
-  inputs.forEach(input => {
-    if (input.value.trim() === "") {
-      isValid = false;
-    }
-  });
-
-  if (!isValid) {
-    errorText.textContent = "Please fill all fields";
-    return;
-  }
-
-  // Clear error
-  errorText.textContent = "";
-
-  // Redirect
-  window.location.href = "main.html";
-});*/
 

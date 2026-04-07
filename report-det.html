@@ -121,7 +121,7 @@
       <p class="label">PHOTO</p>
 
       <div class="photo-box">
-        <img src="images/report-det.jpg">
+        <img src="images/report-det.png">
       </div>
     </div>
 
@@ -153,9 +153,33 @@ if (role === "admin") {
 } else {
 
   actionsBox.innerHTML = `
-    <button class="btn">✏️ Edit Report</button>
-    <button class="btn btn-danger">🗑 Delete Report</button>
-  `;
+  <button class="btn" onclick="goToEdit()">✏️ Edit Report</button>
+  <button class="btn btn-danger" onclick="deleteReport()">🗑 Delete Report</button>
+`;
+
+}
+
+  function goToEdit() {
+  window.location.href = "edit-report.html?id=RPT-01";
+}
+
+function deleteReport() {
+
+  let confirmDelete = confirm("Are you sure you want to delete this report?");
+
+  if (confirmDelete) {
+
+    let msg = document.createElement("p");
+    msg.textContent = "Report deleted successfully!";
+    msg.className = "status-text completed";
+
+    document.querySelector(".actions").appendChild(msg);
+
+    setTimeout(() => {
+      window.location.href = "MyReports.html";
+    }, 600);
+
+  }
 
 }
 

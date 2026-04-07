@@ -59,7 +59,7 @@
 
 <body>
 
-<button class="btn" onclick="history.back()">⬅ Back</button>
+<button class="btn" onclick="history.back()">⬅ </button>
 
 <div class="container main-content">
 
@@ -126,14 +126,40 @@
     </div>
 
     <!-- ACTIONS -->
-    <div class="actions">
-      <button class="btn">✏️ Edit Report</button>
-      <button class="btn btn-danger">🗑 Delete Report</button>
-    </div>
+    <div class="actions" id="actionsBox"></div>
 
   </div>
 
 </div>
+
+<!-- JS -->
+<script>
+
+const params = new URLSearchParams(window.location.search);
+const role = params.get("role");
+
+const actionsBox = document.getElementById("actionsBox");
+
+if (role === "admin") {
+
+  actionsBox.innerHTML = `
+    <select class="btn">
+      <option>Pending</option>
+      <option>In Progress</option>
+      <option>Completed</option>
+    </select>
+  `;
+
+} else {
+
+  actionsBox.innerHTML = `
+    <button class="btn">✏️ Edit Report</button>
+    <button class="btn btn-danger">🗑 Delete Report</button>
+  `;
+
+}
+
+</script>
 
 </body>
 </html>

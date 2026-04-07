@@ -535,30 +535,30 @@
       counter.textContent = "0/20 characters minimum";
     }
 
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
 
-      const desc = description.value.trim();
-      const neighborhood = document.getElementById("neighborhood").value.trim();
-      const streetName = document.getElementById("streetName").value.trim();
-      const buildingNo = document.getElementById("buildingNo").value.trim();
+  const desc = description.value.trim();
+  const neighborhood = document.getElementById("neighborhood").value.trim();
+  const streetName = document.getElementById("streetName").value.trim();
+  const buildingNo = document.getElementById("buildingNo").value.trim();
 
-      successMessage.textContent = "";
+  if (desc.length < 20) {
+    alert("Description must be at least 20 characters.");
+    return;
+  }
 
-      if (desc.length < 20) {
-        alert("Description must be at least 20 characters.");
-        return;
-      }
+  if (!neighborhood || !streetName || !buildingNo) {
+    alert("Please fill in all location fields.");
+    return;
+  }
 
-      if (!neighborhood || !streetName || !buildingNo) {
-        alert("Please fill in all location fields.");
-        return;
-      }
+  
+  alert("Report submitted successfully!");
 
-      successMessage.textContent = "Report submitted successfully!";
-      form.reset();
-      resetCustomSelections();
-    });
+  
+  window.location.href = "main.html";
+});
   </script>
 </body>
 </html>

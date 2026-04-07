@@ -6,10 +6,10 @@ const phoneInput = document.getElementById("phone");
 togglePassword.addEventListener("click", function () {
   if (passwordInput.type === "password") {
     passwordInput.type = "text";
-    togglePassword.textContent = "🙈";
+    togglePassword.textContent = "Hide";
   } else {
     passwordInput.type = "password";
-    togglePassword.textContent = "👁";
+    togglePassword.textContent = "Show";
   }
 });
 

@@ -694,3 +694,94 @@ textarea {
 .reports-box { min-height: 40px; border-radius: 2px; }
 .empty-state p { font-size: 20px; }
 .submit-link { font-size: 18px; }
+
+/* ===== NOTIFICATIONS PAGE ===== */
+
+.notifications-page .page-title {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 26px;
+  font-weight: 800;
+  color: #1f2937;
+}
+
+.notifications-page .helper-text {
+  text-align: center;
+  color: #6b7280;
+  margin-bottom: 30px;
+}
+
+/* ===== LIST ===== */
+
+.notifications-list {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ===== CARD ===== */
+
+.notification-card {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 15px;
+  border: 1px solid #eee;
+  transition: 0.2s;
+}
+
+.notification-card:hover {
+  background: #f9fafb;
+}
+
+/* ===== UNREAD ===== */
+
+.notification-card.unread {
+  border-left: 4px solid #22a06b;
+  background: #f5fbf8;
+}
+
+/* ===== ICON ===== */
+
+.notif-icon {
+  font-size: 22px;
+  margin-top: 3px;
+}
+
+
+.notification-card:nth-child(1) .notif-icon {
+  color: #22a06b; /* Completed */
+}
+
+.notification-card:nth-child(2) .notif-icon {
+  color: #3b82f6; /* In Progress */
+}
+
+.notification-card:nth-child(3) .notif-icon {
+  color: #f59e0b; /* Pending */
+}
+
+.notification-card:nth-child(4) .notif-icon {
+  color: #ef4444; /* Deleted */
+}
+
+/* ===== CONTENT ===== */
+
+.notif-title {
+  font-weight: 700;
+  margin: 0;
+  color: #1f2937;
+}
+
+.notif-desc {
+  margin: 4px 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.notif-time {
+  font-size: 12px;
+  color: #9ca3af;
+}

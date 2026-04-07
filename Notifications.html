@@ -42,7 +42,66 @@
   </div>
 </header>
 
-<body>
+<body class="notifications-page">
+
+  <div class="container">
+
+    <h2 class="page-title">Notifications</h2>
+    <p class="helper-text">Stay updated with your reports and rewards.</p>
+
+    <div class="notifications-list">
+
+      <!-- Completed + Points -->
+      <div class="notification-card unread">
+        <div class="notif-icon">
+          <i class="fa-regular fa-circle-check"></i>
+        </div>
+        <div class="notif-content">
+          <p class="notif-title">Report Completed 🎉</p>
+          <p class="notif-desc">Your electricity report has been resolved. You earned 10 points.</p>
+          <span class="notif-time">2 hours ago</span>
+        </div>
+      </div>
+
+      <!-- In Progress -->
+      <div class="notification-card">
+        <div class="notif-icon">
+          <i class="fa-regular fa-clock"></i>
+        </div>
+        <div class="notif-content">
+          <p class="notif-title">Report In Progress</p>
+          <p class="notif-desc">Your water issue is currently being reviewed.</p>
+          <span class="notif-time">Yesterday</span>
+        </div>
+      </div>
+
+      <!-- Pending -->
+      <div class="notification-card">
+        <div class="notif-icon">
+          <i class="fa-regular fa-hourglass-half"></i>
+        </div>
+        <div class="notif-content">
+          <p class="notif-title">Report Submitted</p>
+          <p class="notif-desc">Your report has been received and is waiting for review.</p>
+          <span class="notif-time">2 days ago</span>
+        </div>
+      </div>
+
+      <!-- Deleted -->
+      <div class="notification-card">
+        <div class="notif-icon">
+          <i class="fa-regular fa-trash-can"></i>
+        </div>
+        <div class="notif-content">
+          <p class="notif-title">Report Deleted</p>
+          <p class="notif-desc">Your report has been removed. No points were awarded.</p>
+          <span class="notif-time">3 days ago</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
 
 </body>
 </html>

@@ -284,6 +284,7 @@ tr:hover {
 .pending { color: #f59e0b; }
 .progress { color: #3b82f6; }
 .completed { color: #22a66b; }
+.Deleted { color: red; }
 
 .status {
   background: #eee;

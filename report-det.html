@@ -166,7 +166,7 @@
       <p class="label">PHOTO</p>
 
       <div class="photo-box">
-        <img src="report-det.jpg">
+        <img src="images/report-det.png">
       </div>
     </div>
 
@@ -179,6 +179,35 @@
   </div>
 
 </div>
+
+<!-- JS -->
+<script>
+
+const params = new URLSearchParams(window.location.search);
+const role = params.get("role");
+
+const actionsBox = document.getElementById("actionsBox");
+
+if (role === "admin") {
+
+  actionsBox.innerHTML = `
+    <select class="btn">
+      <option>Pending</option>
+      <option>In Progress</option>
+      <option>Completed</option>
+    </select>
+  `;
+
+} else {
+
+  actionsBox.innerHTML = `
+    <button class="btn">✏️ Edit Report</button>
+    <button class="btn btn-danger">🗑 Delete Report</button>
+  `;
+
+}
+
+</script>
 
 </body>
 </html>

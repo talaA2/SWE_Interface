@@ -6,8 +6,6 @@
 <title>Report Details</title>
 
 <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 .details-box {
@@ -64,41 +62,7 @@ margin-top: 10px;
 
 </head>
 
-<header class="topbar">
-  <div class="container topbar-inner">
-
-    <div class="brand">
-      <a href ="main.html"><img src="images/logo.png" alt="Logo"></a>
-      <span class="brand-text"><a href ="main.html">Rasheed</span></a>
-    </div>
-
-    <nav class="nav-links">
-  <a href="AddReport.html" class="nav-link">
-    <i class="fa-regular fa-file-lines"></i> Add Report
-  </a>
-
-  <a href="MyReports.html" class="nav-link active">
-    <i class="fa-regular fa-clipboard"></i> My Reports
-  </a>
-
-  <a href="rewards.html" class="nav-link">
-    <i class="fa-regular fa-star"></i> Rewards
-  </a>
-
-  <a href="Notifications.html" class="nav-link">
-    <i class="fa-regular fa-bell"></i> Notifications
-  </a>
-
-  <a href="index.html" class="nav-link logout">
-    <i class="fa-solid fa-right-from-bracket"></i> Log Out
-  </a>
-</nav>
-
-  </div>
-</header>
-
 <body>
-
 
 <button class="btn back-btn" onclick="history.back()">⬅ Back</button>
 
@@ -108,23 +72,23 @@ margin-top: 10px;
 
     <!-- TITLE -->
     <div style="display:flex; align-items:center; gap:10px;">
-      <div class="icon">⚡</div>
+      <div class="icon">💧</div>
       <div>
-        <h2 style="margin:0;">RPT-02</h2>
-        <span style="color:gray;">Power Issue</span>
+        <h2 style="margin:0;">RPT-03</h2>
+        <span style="color:gray;">Water Issue</span>
       </div>
     </div>
 
     <!-- STATUS -->
     <div style="margin-top:15px;">
-      <span class="badge" style="background:#eee;">In Progress</span>
-      <span class="badge high">High</span>
+      <span class="badge" style="background:#eee;">Completed</span>
+      <span class="badge low">Low</span>
     </div>
 
     <!-- DESCRIPTION -->
     <div style="margin-top:20px;">
       <p class="label">DESCRIPTION</p>
-      <p>Power outage in building</p>
+      <p>Small pipe issue</p>
     </div>
 
     <!-- LOCATION -->
@@ -134,19 +98,19 @@ margin-top: 10px;
       <table class="location-table">
         <tr>
           <td class="label">City</td>
-          <td>Jeddah</td>
+          <td>Dammam</td>
         </tr>
         <tr>
           <td class="label">Neighborhood</td>
-          <td>Al Rawdah</td>
+          <td>Al Faisaliyah</td>
         </tr>
         <tr>
           <td class="label">Street</td>
-          <td>Street 8</td>
+          <td>Street 5</td>
         </tr>
         <tr>
           <td class="label">Building</td>
-          <td>15</td>
+          <td>3</td>
         </tr>
       </table>
     </div>
@@ -154,7 +118,7 @@ margin-top: 10px;
     <!-- DATE -->
     <div style="margin-top:20px;">
       <p class="label">SUBMITTED</p>
-      <p>Apr 3, 2026</p>
+      <p>Apr 2, 2026</p>
     </div>
 
     <!-- PHOTO -->
@@ -162,7 +126,7 @@ margin-top: 10px;
       <p class="label">PHOTO</p>
 
       <div class="photo-box">
-        <img src="images/report-det2.jpg">
+        <img src="images\report-det3.jpg">
       </div>
     </div>
 
@@ -186,17 +150,14 @@ if (role === "admin") {
   actionsBox.innerHTML = `
     <select class="btn">
       <option>Pending</option>
-      <option selected>In Progress</option>
-      <option>Completed</option>
+      <option>In Progress</option>
+      <option selected>Completed</option>
     </select>
   `;
 
 } else {
 
-  actionsBox.innerHTML = `
-    <button class="btn">✏️ Edit Report</button>
-    <button class="btn btn-danger">🗑 Delete Report</button>
-  `;
+  actionsBox.innerHTML = "";
 
 }
 

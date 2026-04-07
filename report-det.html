@@ -6,6 +6,8 @@
 <title>Report Details</title>
 
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 .details-box {
@@ -48,6 +50,11 @@
   margin-top: 25px;
 }
 
+/* .back-btn {
+  margin-left: 10px;
+  margin-top: 10px;
+} */
+
 .btn-danger {
   background: white;
   border: 2px solid #e57373;
@@ -57,11 +64,49 @@
 
 </head>
 
+<header class="topbar">
+  <div class="container topbar-inner">
+
+    <div class="brand">
+      <a href ="main.html"><img src="images/logo.png" alt="Logo"></a>
+      <span class="brand-text"><a href ="main.html">Rasheed</span></a>
+    </div>
+
+    <nav class="nav-links">
+  <a href="AddReport.html" class="nav-link">
+    <i class="fa-regular fa-file-lines"></i> Add Report
+  </a>
+
+  <a href="MyReports.html" class="nav-link active">
+    <i class="fa-regular fa-clipboard"></i> My Reports
+  </a>
+
+  <a href="rewards.html" class="nav-link">
+    <i class="fa-regular fa-star"></i> Rewards
+  </a>
+
+  <a href="Notifications.html" class="nav-link">
+    <i class="fa-regular fa-bell"></i> Notifications
+  </a>
+
+  <a href="index.html" class="nav-link logout">
+    <i class="fa-solid fa-right-from-bracket"></i> Log Out
+  </a>
+</nav>
+
+  </div>
+</header>
+
 <body>
 
-<button class="btn" onclick="history.back()">⬅ Back</button>
+<!-- <button class="btn back-btn" onclick="history.back()">⬅ Back</button> -->
 
 <div class="container main-content">
+
+  <h1 class="page-title">Report Details</h1>
+    <a href="MyReports.html" class="back-btn">
+      <i class="fa-solid fa-arrow-left"></i> Back
+    </a>
 
   <div class="details-box">
 
@@ -127,7 +172,7 @@
 
     <!-- ACTIONS -->
     <div class="actions">
-      <button class="btn">✏️ Edit Report</button>
+      <button class="btn" onclick="window.location.href='EditReport.html'">✏️ Edit Report</button>
       <button class="btn btn-danger">🗑 Delete Report</button>
     </div>
 

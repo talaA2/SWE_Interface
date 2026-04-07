@@ -12,6 +12,7 @@ body {
 
 .page-title {
   text-align: center;
+  margin-top: 30px;
 }
 
 .page-subtitle {
@@ -931,4 +932,255 @@ textarea {
 
 .history-item p{
   margin: 0;
+}
+
+/* ===== EDIT REPORT PAGE ===== */
+
+.edit-report-page {
+  font-family: "Inter", sans-serif;
+  background: #f3f4f6;
+}
+
+.edit-report-wrapper {
+  max-width: 920px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #22a06b;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  margin-bottom: 24px;
+}
+
+.back-btn:hover {
+  background: #1d8b5d;
+}
+
+.edit-report-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 22px;
+  padding: 28px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+}
+
+.edit-report-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.edit-report-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #eff6ff;
+  color: #3b82f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.edit-report-id {
+  margin: 0;
+  font-size: 34px;
+  font-weight: 800;
+  color: #1f2937;
+}
+
+.edit-report-type {
+  margin: 2px 0 0;
+  color: #6b7280;
+  font-size: 16px;
+}
+
+.edit-section-title {
+  margin: 24px 0 12px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #374151;
+}
+
+.edit-report-page textarea,
+.edit-report-page input[type="text"] {
+  width: 100%;
+  border: 1px solid #d9dde3;
+  border-radius: 14px;
+  outline: none;
+  font-family: inherit;
+  transition: 0.2s;
+  color: #1f2937;
+  background: #fff;
+}
+
+.edit-report-page textarea:focus,
+.edit-report-page input[type="text"]:focus {
+  border-color: #22a06b;
+  box-shadow: 0 0 0 3px rgba(34,160,107,0.10);
+}
+
+.edit-report-page textarea {
+  min-height: 120px;
+  resize: vertical;
+  padding: 16px 14px;
+  font-size: 15px;
+}
+
+.edit-location-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.edit-field label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.edit-field input {
+  height: 42px;
+  padding: 0 14px;
+  font-size: 14px;
+}
+
+.edit-severity-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.edit-severity-btn {
+  border: 1.5px solid #d5dae0;
+  background: #fff;
+  color: #7b8391;
+  border-radius: 999px;
+  height: 40px;
+  min-width: 78px;
+  padding: 0 20px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.edit-severity-btn:hover {
+  border-color: #bfc6cf;
+}
+
+.edit-severity-btn.active {
+  border-color: #22a06b;
+  color: #22a06b;
+  background: #effaf4;
+}
+
+.edit-upload-box {
+  border: 2px dashed #d9dde3;
+  border-radius: 16px;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  cursor: pointer;
+  padding: 18px;
+  transition: 0.2s;
+  background: #fff;
+}
+
+.edit-upload-box:hover {
+  background: #fafafa;
+}
+
+.edit-upload-box i {
+  font-size: 36px;
+  color: #6f7785;
+}
+
+.edit-upload-main {
+  color: #6f7785;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.edit-upload-sub {
+  color: #8c94a1;
+  font-size: 14px;
+}
+
+.edit-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.save-btn {
+  border: none;
+  background: #22a06b;
+  color: #fff;
+  height: 46px;
+  padding: 0 22px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.save-btn:hover {
+  background: #1d8b5d;
+}
+
+.cancel-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 46px;
+  padding: 0 22px;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  color: #374151;
+  background: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.cancel-btn:hover {
+  background: #f9fafb;
+}
+
+.edit-success-message {
+  margin-top: 14px;
+  color: #22a06b;
+  font-size: 14px;
+  font-weight: 600;
+  min-height: 20px;
+}
+
+@media (max-width: 700px) {
+  .edit-location-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .edit-report-card {
+    padding: 20px;
+  }
+
+  .edit-report-id {
+    font-size: 28px;
+  }
 }

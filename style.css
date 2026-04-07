@@ -1211,7 +1211,8 @@ textarea {
 }
 
 .footer {
-  background: #111827;
+  /*background: #111827;*/
+  background: #232e48;
   color: #ffffff;
   margin-top: 40px;
   padding: 30px 20px;

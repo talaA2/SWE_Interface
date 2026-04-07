@@ -100,9 +100,14 @@ margin-top: 10px;
 <body>
 
 
-<button class="btn back-btn" onclick="history.back()">⬅ Back</button>
+<!--<button class="btn back-btn" onclick="history.back()">⬅ Back</button>-->
 
 <div class="container main-content">
+
+  <h1 class="page-title">Report Details</h1>
+    <a href="MyReports.html" class="back-btn">
+      <i class="fa-solid fa-arrow-left"></i> Back
+    </a>
 
   <div class="details-box">
 
@@ -168,7 +173,8 @@ margin-top: 10px;
 
     <!-- ACTIONS -->
     <div class="actions" id="actionsBox"></div>
-
+      <!--<button class="btn" onclick="window.location.href='EditReport2.html'">✏️ Edit Report</button>
+      <button class="btn btn-danger">🗑 Delete Report</button>-->
   </div>
 
 </div>
@@ -194,10 +200,9 @@ if (role === "admin") {
 } else {
 
   actionsBox.innerHTML = `
-    <button class="btn">✏️ Edit Report</button>
+    <button class="btn" onclick="window.location.href='EditReport2.html'">✏️ Edit Report</button>
     <button class="btn btn-danger">🗑 Delete Report</button>
   `;
-
 }
 
 </script>

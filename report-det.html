@@ -171,9 +171,9 @@
     </div>
 
     <!-- ACTIONS -->
-    <div class="actions">
-      <button class="btn" onclick="window.location.href='EditReport.html'">✏️ Edit Report</button>
-      <button class="btn btn-danger">🗑 Delete Report</button>
+    <div class="actions" id="actionsBox">
+      <!--<button class="btn" onclick="window.location.href='EditReport.html'">✏️ Edit Report</button>
+      <button class="btn btn-danger">🗑 Delete Report</button>-->
     </div>
 
   </div>
@@ -201,7 +201,7 @@ if (role === "admin") {
 } else {
 
   actionsBox.innerHTML = `
-    <button class="btn">✏️ Edit Report</button>
+    <button class="btn" onclick="window.location.href='EditReport.html'">✏️ Edit Report</button>
     <button class="btn btn-danger">🗑 Delete Report</button>
   `;
 

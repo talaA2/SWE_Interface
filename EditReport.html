@@ -99,6 +99,9 @@
 
         <h3 class="edit-section-title">Update Photo</h3>
         <div class="edit-upload-box" id="uploadBox">
+          <div class="edit-current-photo">
+            <img id="currentPhoto" src="images/report-det.png" alt="Report Image">
+          </div>
           <i class="fa-solid fa-cloud-arrow-up"></i>
           <div class="edit-upload-main" id="uploadMain">Click to upload a new image</div>
           <div class="edit-upload-sub">PNG, JPG up to 5MB</div>
@@ -130,11 +133,27 @@
       photoInput.click();
     });
 
-    photoInput.addEventListener("change", () => {
+    /*photoInput.addEventListener("change", () => {
       if (photoInput.files.length > 0) {
         uploadMain.textContent = photoInput.files[0].name;
       }
-    });
+    });*/
+    const currentPhoto = document.getElementById("currentPhoto");
+
+photoInput.addEventListener("change", () => {
+  if (photoInput.files.length > 0) {
+    const file = photoInput.files[0];
+
+    uploadMain.textContent = file.name;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      currentPhoto.src = e.target.result;
+    };
+
+    reader.readAsDataURL(file);
+  }
+});
 
     const severityButtons = document.querySelectorAll(".edit-severity-btn");
     severityButtons.forEach(btn => {

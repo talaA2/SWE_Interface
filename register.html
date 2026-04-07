@@ -155,29 +155,41 @@
       <h2>Create your account</h2>
       <p class="subtitle">Join Rasheed and start reporting</p>
 
-      <form>
+      <form id ="registerForm">
 
-        <div class="form-group">
-          <label>Full Name</label>
-          <input type="text" placeholder="Enter your full name">
+        <div style="display: flex; gap: 10px;">
+
+        <div class="form-group" style="flex: 1;">
+            <label>First Name</label>
+            <input type="text" id="firstName" placeholder="First name">
+        </div>
+
+        <div class="form-group" style="flex: 1;">
+            <label>Last Name</label>
+            <input type="text" id="lastName" placeholder="Last name">
+        </div>
+
         </div>
 
         <div class="form-group">
           <label>Phone Number</label>
-          <input type="text" placeholder="05XXXXXXXX">
+          <input type="text" id="phone" placeholder="05XXXXXXXX">
         </div>
 
         <div class="form-group">
           <label>Password</label>
-          <input type="password" placeholder="Create a password">
+          <input type="password" id="password" placeholder="Create a password">
         </div>
 
         <div class="form-group">
           <label>Confirm Password</label>
-          <input type="password" placeholder="Confirm your password">
+          <input type="password" id="confirmPassword" placeholder="Confirm your password">
         </div>
+        <p id="errorMsg" style="color: red; font-size: 13px; display: none; margin-top: 5px;">
+            Please fill all fields
+        </p>
 
-        <button class="btn">Create Account</button>
+        <button type="submit" class="btn">Create Account</button>
 
       </form>
 
@@ -187,6 +199,49 @@
 
     </div>
   </div>
+<script>
+  const form = document.getElementById("registerForm");
+  const errorMsg = document.getElementById("errorMsg");
 
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const firstName = document.getElementById("firstName").value.trim();
+    const lastName = document.getElementById("lastName").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    errorMsg.style.display = "block";
+
+    if (
+      firstName === "" ||
+      lastName ==="" ||
+      phone === "" ||
+      password === "" ||
+      confirmPassword === ""
+    ) {
+      errorMsg.textContent = "Please fill all fields";
+      return;
+    }
+
+    const hasUppercase = /[A-Z]/.test(password);
+    const hasNumber = /[0-9]/.test(password);
+
+    if (password.length < 8 || !hasUppercase || !hasNumber) {
+      errorMsg.textContent =
+        "Password must be at least 8 characters and include a capital letter and a number";
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      errorMsg.textContent = "Passwords do not match";
+      return;
+    }
+
+    errorMsg.style.display = "none";
+    window.location.href = "main.html";
+  });
+</script>
 </body>
 </html>

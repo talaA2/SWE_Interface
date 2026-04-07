@@ -311,7 +311,7 @@
       <section class="reward-card progress-card">
         <div class="progress-circle">
           <div class="progress-inner">
-            <span class="points-number" id="pointsValue">0</span>
+            <span class="points-number" id="pointsValue">10</span>
             <span class="points-total">/ 100 pts</span>
           </div>
         </div>
@@ -331,16 +331,16 @@
 
       <section class="reward-card">
         <h3 class="history-title">Points History</h3>
-        <p class="history-empty">
-          No points earned yet. Submit and get reports verified to earn points.
-        </p>
+        <div class="history-item">
+            <p><strong>+10 points</strong> awarded for completed report #015 ! </p>
+        </div>
       </section>
     </div>
   </main>
 
   <script>
     // Frontend-only placeholder value
-    const userPoints = 0;
+    const userPoints = 10;
     document.getElementById("pointsValue").textContent = userPoints;
   </script>
 </body>

@@ -136,3 +136,32 @@ fileInput.addEventListener("change", () => {
     uploadBox.innerHTML = `✔ Uploaded: ${fileInput.files[0].name}`;
   }
 });
+
+/* ---- Register Form-----
+const form = document.getElementById("registerForm");
+const errorText = document.getElementById("errorText");
+
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const inputs = form.querySelectorAll("input");
+  let isValid = true;
+
+  inputs.forEach(input => {
+    if (input.value.trim() === "") {
+      isValid = false;
+    }
+  });
+
+  if (!isValid) {
+    errorText.textContent = "Please fill all fields";
+    return;
+  }
+
+  // Clear error
+  errorText.textContent = "";
+
+  // Redirect
+  window.location.href = "main.html";
+});*/
+

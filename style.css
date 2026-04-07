@@ -932,3 +932,67 @@ textarea {
 .history-item p{
   margin: 0;
 }
+
+/* FOOTER */
+.footer {
+  margin-top: 60px;
+  padding: 22px 0;
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.footer-brand img {
+  width: 32px;
+  height: auto;
+}
+
+/* Links */
+.footer-links {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  text-decoration: none;
+  font-size: 14px;
+  color: #6b7280;
+  transition: 0.2s;
+}
+
+.footer-links a:hover {
+  color: #22a06b;
+}
+
+/* Copyright */
+.footer-copy {
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-links {
+    justify-content: center;
+  }
+}

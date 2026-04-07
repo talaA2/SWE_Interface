@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+  <link rel="stylesheet" href="style.css">
   <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 
@@ -30,7 +31,7 @@
 
     .container {
       width: 100%;
-      max-width: 420px;
+      max-width: 500px;
       padding: 20px;
     }
 
@@ -138,6 +139,11 @@
     .login-link a:hover {
       text-decoration: underline;
     }
+    .logo img {
+        width: auto;
+        height: 80px;
+        margin-bottom: 10px;
+    }
 
   </style>
 </head>
@@ -148,8 +154,7 @@
     <div class="card">
 
       <div class="logo">
-        <i class="fa-solid fa-bolt"></i>
-        <span>Rasheed</span>
+        <img src="images/logo.png" alt="Rasheed Logo">
       </div>
 
       <h2>Create your account</h2>
@@ -199,6 +204,8 @@
 
     </div>
   </div>
+
+
 <script>
   const form = document.getElementById("registerForm");
   const errorMsg = document.getElementById("errorMsg");

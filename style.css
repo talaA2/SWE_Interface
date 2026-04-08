@@ -627,10 +627,12 @@ textarea {
   border: 1px solid #dfe4ea;
   border-radius: 26px;
   min-height: 40px;
+
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px;
+  flex-direction: column; 
+
+  gap: 15px;
+  padding: 20px;
 }
 
 .empty-state {

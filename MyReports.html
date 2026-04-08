@@ -41,7 +41,7 @@
   <!-- FILTER -->
   <div class="search-row">
 
-    <input type="text" placeholder="Search reports...">
+<input type="text" id="searchInput" placeholder="Search reports...">
 
     <select id="typeFilter">
       <option value="all">All Types</option>
@@ -161,6 +161,25 @@ function filterReports() {
 typeFilter.addEventListener("change", filterReports);
 severityFilter.addEventListener("change", filterReports);
 
+    const searchInput = document.getElementById("searchInput");
+
+searchInput.addEventListener("input", function () {
+
+  const value = searchInput.value.toLowerCase();
+
+  cards.forEach(card => {
+
+    const text = card.innerText.toLowerCase();
+
+    if (text.includes(value)) {
+      card.style.display = "flex";
+    } else {
+      card.style.display = "none";
+    }
+
+  });
+
+});
 </script>
 <footer class="footer">
   <div class="footer-container">

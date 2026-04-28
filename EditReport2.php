@@ -22,11 +22,11 @@
     </div>
 
     <nav class="nav-links">
-      <a href="AddReport.html" class="nav-link">
+      <a href="AddReport.php" class="nav-link">
         <i class="fa-regular fa-file-lines"></i> Add Report
       </a>
 
-      <a href="MyReports.html" class="nav-link active">
+      <a href="MyReports.php" class="nav-link active">
         <i class="fa-regular fa-clipboard"></i> My Reports
       </a>
 

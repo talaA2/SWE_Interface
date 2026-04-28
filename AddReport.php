@@ -1,3 +1,44 @@
+<?php
+session_start();
+include "db.php";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+if (isset($_SESSION['userID'])) { // if log in completed i will delete all this if, just i will keep:
+  $userID = $_SESSION['userID'];  //$userID = $_SESSION['userID'];
+} else {
+  $userID = 1; // مؤقت لين يخلصون login
+}
+
+  $desc = $_POST['description'];
+  $issueType = $_POST['issueType'];
+  $severity = $_POST['severity'];
+  $city = $_POST['city'];
+  $neighborhood = $_POST['neighborhood'];
+$street = $_POST['street'];
+$buildingNo = $_POST['buildingNo'];
+
+$imageName = "";
+
+if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
+
+  $targetDir = "uploads/";
+  $imageName = time() . "_" . basename($_FILES["photo"]["name"]);
+  $targetFile = $targetDir . $imageName;
+
+  move_uploaded_file($_FILES["photo"]["tmp_name"], $targetFile);
+}
+
+  $sql = "INSERT INTO report (description, type, severity , city, neighborhood, street, building_no, status, image, userID)
+          VALUES ('$desc', '$issueType', '$severity', '$city', '$neighborhood', '$street', '$buildingNo', 'Pending', '$imageName', '$userID')";
+
+  $conn->query($sql);
+
+  header("Location: MyReports.php");
+  exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,8 +65,8 @@
       </div>
 
       <nav class="nav-links">
-        <a href="AddReport.html" class="nav-link active"><i class="fa-regular fa-file-lines"></i> Add Report</a>
-        <a href="MyReports.html" class="nav-link"><i class="fa-regular fa-clipboard"></i> My Reports</a>
+        <a href="AddReport.php" class="nav-link active"><i class="fa-regular fa-file-lines"></i> Add Report</a>
+        <a href="MyReports.php" class="nav-link"><i class="fa-regular fa-clipboard"></i> My Reports</a>
         <a href="Rewards.html" class="nav-link"><i class="fa-regular fa-star"></i> Rewards</a>
         <a href="Notifications.html" class="nav-link"><i class="fa-regular fa-bell"></i> Notifications</a>
         <a href="index.html" class="nav-link logout"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a>
@@ -38,7 +79,7 @@
     <h1 class="page-title">Add a Report</h1>
     <p class="helper-text">Help us identify utility issues in your area.</p>
 
-    <form class="form-card" id="reportForm">
+    <form class="form-card" id="reportForm" method="POST" enctype="multipart/form-data">
       <h3 class="section-title">Issue Type</h3>
 
       <div class="issue-types">
@@ -55,31 +96,31 @@
         </button>
       </div>
 
-      <input type="hidden" id="issueType" value="Electricity">
+      <input type="hidden" id="issueType" name="issueType" value="Electricity">
 
       <h3 class="section-title">Description</h3>
-      <textarea id="description" placeholder="Describe the issue in detail (min 20 characters)..."></textarea>
+      <textarea id="description" name="description" placeholder="Describe the issue in detail (min 20 characters)..."></textarea>
       <div class="counter" id="counter">0/20 characters minimum</div>
 
       <div class="location-grid">
         <div class="field">
           <label for="neighborhood">Neighborhood</label>
-          <input type="text" id="neighborhood" placeholder="e.g. Al Olaya">
+          <input type="text" id="neighborhood" name="neighborhood" placeholder="e.g. Al Olaya">
         </div>
 
         <div class="field">
           <label for="streetName">Street Name</label>
-          <input type="text" id="streetName" placeholder="e.g. King Fahd Rd">
+          <input type="text" id="streetName" name="street" placeholder="e.g. King Fahd Rd">
         </div>
 
         <div class="field">
           <label for="City">City</label>
-          <input type="text" id="City" placeholder="e.g. Riyadh">
+          <input type="text" id="City" name="city" placeholder="e.g. Riyadh">
         </div>
 
         <div class="field">
           <label for="buildingNo">Building No.</label>
-          <input type="text" id="buildingNo" placeholder="e.g. 42">
+          <input type="text" id="buildingNo"  name="buildingNo" placeholder="e.g. 42">
         </div>
       </div>
 
@@ -90,14 +131,14 @@
         <button type="button" class="severity-btn" data-severity="High">High</button>
       </div>
 
-      <input type="hidden" id="severityLevel" value="Medium">
+      <input type="hidden" id="severityLevel" name="severity" value="Medium">
 
       <h3 class="section-title">Photo (optional)</h3>
       <div class="upload-box" id="uploadBox">
         <i class="fa-solid fa-cloud-arrow-up"></i>
         <div class="upload-main" id="uploadMain">Click to upload or drag & drop</div>
         <div class="upload-sub">PNG, JPG up to 5MB</div>
-        <input type="file" id="photoInput" accept=".png,.jpg,.jpeg" hidden>
+        <input type="file" id="photoInput" name="photo" accept=".png,.jpg,.jpeg" hidden>
       </div>
 
       <button type="submit" class="submit-btn">Submit Report</button>
@@ -166,7 +207,7 @@
     }
 
 form.addEventListener("submit", (e) => {
-  e.preventDefault();
+  //e.preventDefault();
 
   const desc = description.value.trim();
   const neighborhood = document.getElementById("neighborhood").value.trim();
@@ -176,19 +217,19 @@ form.addEventListener("submit", (e) => {
 
   if (desc.length < 20) {
     alert("Description must be at least 20 characters.");
+    e.preventDefault();
     return;
   }
 
  if (!neighborhood || !streetName || !city || !buildingNo) {
   alert("Please fill in all location fields.");
+  e.preventDefault();
   return;
 }
 
   
-  alert("Report submitted successfully!");
-
-  
-  window.location.href = "main.html";
+  //alert("Report submitted successfully!");
+  //window.location.href = "main.html";
 });
   </script>
 

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rasheed</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      background: #f6f7f8;
+      color: #1f2937;
+    }
+
+    .container {
+      width: min(100%, 1100px);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 80px 20px 90px;
+      background: linear-gradient(to bottom, #ffffff, #f3f4f6);
+    }
+
+    .logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .logo img {
+        width: auto;
+        height: 120px;
+        margin-bottom: 10px;
+    }
+
+    .logo span {
+      background: linear-gradient(270deg, #2563eb, #22a06b, #2563eb);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: moveColor 3s ease infinite;
+    }
+
+    @keyframes moveColor {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .tagline {
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: #6b7280;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 38px;
+      font-weight: 800;
+      margin: 0 0 16px;
+    }
+
+    .subtitle {
+      color: #6b7280;
+      font-size: 16px;
+      max-width: 600px;
+      margin: 0 auto 28px;
+      line-height: 1.6;
+    }
+
+    /* BUTTONS */
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 22px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: #22a06b;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #1d8b5d;
+    }
+
+    .btn-secondary {
+      border: 1px solid #d1d5db;
+      color: #374151;
+      background: white;
+    }
+
+    .btn-secondary:hover {
+      background: #f3f4f6;
+    }
+
+    /* FEATURES SECTION */
+    .features-section {
+      background: linear-gradient(to bottom, #eef8f2, #e4f4eb);
+      padding: 70px 0 90px;
+      position: relative;
+    }
+
+    
+
+    .features-section::before {
+      content: "";
+      position: absolute;
+      top: -40px;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background: #eef8f2;
+      border-top-left-radius: 50% 40px;
+      border-top-right-radius: 50% 40px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .feature-card {
+      background: white;
+      border: 1px solid #e7e7e7;
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    .feature-icon {
+      width: 50px;
+      height: 50px;
+      margin: 0 auto 12px;
+      border-radius: 12px;
+      background: #e9f8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #22a06b;
+      font-size: 20px;
+    }
+
+    .feature-card h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .feature-card p {margin: 0;
+      font-size: 14px;
+      color: #6b7280;
+      line-height: 1.5;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 13px;
+      color: #6b7280;
+      margin-top: 40px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+
+      .hero {
+        padding: 70px 20px 70px;
+      }
+    }
+    .footer {
+  background: #232e48;
+  color: #ffffff;
+  margin-top: 0px;
+  padding: 30px 20px;
+}
+
+.footer-container {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: center;
+}
+
+.footer-left h3 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.footer-left p {
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+
+
+.footer-copy p {
+  font-size: 13px;
+  color: #6b7280;
+}
+  </style>
+</head>
+
+<body>
+
+  <section class="hero">
+    <div class="container">
+
+      <div class="logo">
+        <img src="images/logo.png" alt="Rasheed Logo">
+      </div>
+
+      <div class="tagline">REDUCE. REPORT. SUSTAIN.</div>
+
+      <h1>Report water and electricity<br>issues in your community</h1>
+
+      <p class="subtitle">
+        Together we conserve. Help identify and resolve utility issues in your neighborhood —
+        earn rewards while making a difference.
+      </p>
+
+      <div class="buttons">
+        <a href="register.php" class="btn btn-primary">Create Account</a>
+        <a href="login.php" class="btn btn-secondary">Log In</a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="features-section">
+    <div class="container">
+      <div class="features">
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fa-regular fa-file-lines"></i>
+          </div>
+          <h3>Easy Reporting</h3>
+          <p>Submit water and electricity issues in seconds with our streamlined reporting process.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fa-solid fa-chart-line"></i>
+          </div>
+          <h3>Track Progress</h3>
+          <p>Monitor your reports in real-time and receive updates as issues are resolved.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fa-regular fa-star"></i>
+          </div>
+          <h3>Earn Rewards</h3>
+          <p>Collect points for verified reports and earn the Community Guardian badge.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+<footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-left">
+      <h3>Rasheed</h3>
+      <p>Helping communities report water and electricity issues efficiently.</p>
+    </div>
+
+   
+
+    <div class="footer-copy">
+      <p>© 2026 Rasheed. All rights reserved.</p>
+    </div>
+
+  </div>
+</footer>
+</body>
+</html>

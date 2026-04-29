@@ -40,7 +40,7 @@ if ($isAdmin == "1") {
         $_SESSION['userID'] = $user['userID'];
         $_SESSION['role'] = 'admin';
 
-        header("Location: admin-dashboard.php");
+        header("Location: admin.php");
         exit();
 
     } else {

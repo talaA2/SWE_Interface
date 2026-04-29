@@ -13,6 +13,7 @@ $totalReports = $res1->fetch_assoc()['total'];
 $sql2 = "SELECT points FROM resident WHERE residentID='$residentID'";
 $res2 = $conn->query($sql2);
 $points = $res2->fetch_assoc()['points'] ?? 0;
+$badgeStatus = ($points >= 100) ? "Unlocked" : "Locked"; //HEREEEEE
 
 // آخر التقارير
 $sql3 = "SELECT * FROM report WHERE residentID='$residentID' ORDER BY reportID DESC LIMIT 3";
@@ -100,9 +101,9 @@ $name = $user['firstName'] . " " . $user['lastName'];
       <div class="card stat-card">
         <div>
           <p>Badge Status</p>
-          <h2>Locked</h2>
+          <h2><?= $badgeStatus?></h2>  <!--HEREEEEEEEEE-->
         </div>
-        <div class="icon-box gray-box">
+        <div class="icon-box <?= ($points >= 100) ? 'green-box' : 'gray-box' ?>">
           <i class="fa-solid fa-trophy"></i>
         </div>
       </div>

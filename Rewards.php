@@ -5,7 +5,8 @@ include "db.php";
 /* TEMPORARY for testing only.
    Remove this once login sets $_SESSION['userID']. */
 if (!isset($_SESSION['userID'])) {
-    $_SESSION['userID'] = 1;
+    header("Location: login.php");
+    exit();
 }
 
 $residentID = $_SESSION['userID'];
@@ -87,7 +88,7 @@ $progressDegree = min($points, 100) * 3.6;
         <i class="fa-regular fa-bell"></i> Notifications
       </a>
 
-      <a href="index.php" class="nav-link logout">
+      <a href="logout.php" class="nav-link logout">
         <i class="fa-solid fa-right-from-bracket"></i> Log Out
       </a>
     </nav>

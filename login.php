@@ -100,19 +100,6 @@ $error = $_GET['error'] ?? '';
       background: #1d8b5d;
     }
 
-    .btn-admin {
-      margin-top: 10px;
-      background: white;
-      border: 1px solid #22a06b;
-      color: #22a06b;
-      font-weight: 700;
-    }
-
-    .btn-admin:hover {
-      background: #22a06b;
-      color: white;
-    }
-
     .signup-link {
       margin-top: 15px;
       font-size: 13px;
@@ -160,13 +147,7 @@ $error = $_GET['error'] ?? '';
         <input type="password" id="password" name="password" placeholder="Enter your password">
       </div>
 
-      <!-- إضافة بدون حذف -->
-      <input type="hidden" name="isAdmin" id="isAdmin" value="0">
-
       <button class="btn" type="submit">Log In</button>
-
-      <button type="button" class="btn btn-admin" onclick="loginAsAdmin()">
-        Log in as Admin</button>
 
       <div class="error" id="errorMsg">
         <?php echo $error; ?>
@@ -183,14 +164,6 @@ $error = $_GET['error'] ?? '';
   <script>
     const form = document.getElementById("loginForm");
     const errorMsg = document.getElementById("errorMsg");
-
-    let isAdmin = false;
-
-function loginAsAdmin() {
-  isAdmin = true;
-  document.getElementById("isAdmin").value = "1";
-  document.getElementById("loginForm").submit();
-}
 
     form.addEventListener("submit", function(e) {
 
@@ -211,7 +184,7 @@ function loginAsAdmin() {
         return;
       }
 
-});
+    });
   </script>
 
 </body>

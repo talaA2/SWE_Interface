@@ -102,7 +102,7 @@ $result = $conn->query($sql);
 </a>
 
 <?php endwhile; ?>
-
+  </div>
   <!-- REPORTS -->
 <!--
   <a href="report-det.html?role=user"

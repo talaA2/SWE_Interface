@@ -1,14 +1,31 @@
 <?php
+session_start();
 include "db.php";
 
+// تأكد من تسجيل الدخول
+if (!isset($_SESSION['role'])) {
+  header("Location: login.php");
+  exit();
+}
+
+// حذف التقرير
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_id'])) {
 
   $delete_id = $_POST['delete_id'];
 
-  $sql = "DELETE FROM report WHERE reportID = '$delete_id'";
+  $sql = "DELETE FROM report 
+          WHERE reportID = '$delete_id' 
+          AND residentID = '{$_SESSION['userID']}'";
+
   $conn->query($sql);
 
   header("Location: MyReports.php");
+  exit();
+}
+
+// جلب التقرير
+if (!isset($_GET['id'])) {
+  echo "No report selected";
   exit();
 }
 
@@ -18,6 +35,17 @@ $sql = "SELECT * FROM report WHERE reportID = '$id'";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 
+// لو التقرير غير موجود
+if (!$row) {
+  echo "Report not found";
+  exit();
+}
+
+// حماية: المستخدم يشوف بس تقاريره
+if ($_SESSION['role'] == 'resident' && $row['residentID'] != $_SESSION['userID']) {
+  echo "Access denied";
+  exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -86,18 +114,78 @@ margin-top: 10px;
 </style>
 
 </head>
-<header class="topbar" id="actionheader">
-
-</header>
-
 
 <body>
+<?php if ($_SESSION['role'] == 'admin'): ?>
 
+<header class="topbar">
+  <div class="container topbar-inner">
+
+    <div class="brand">
+      <a href="admin.php">
+        <img src="images/logo.png" alt="Logo">
+      </a>
+      <span class="brand-text">
+        <a href="admin.php">Rasheed</a>
+      </span>
+    </div>
+
+    <nav class="nav-links">
+      <a href="index.php" class="nav-link logout">
+        <i class="fa-solid fa-right-from-bracket"></i> Log Out
+      </a>
+    </nav>
+
+  </div>
+</header>
+
+<?php else: ?>
+
+<header class="topbar">
+  <div class="container topbar-inner">
+
+    <div class="brand">
+      <a href="main.php">
+        <img src="images/logo.png" alt="Logo">
+      </a>
+      <span class="brand-text">
+        <a href="main.php">Rasheed</a>
+      </span>
+    </div>
+
+    <nav class="nav-links">
+      <a href="AddReport.php" class="nav-link">
+        <i class="fa-regular fa-file-lines"></i> Add Report
+      </a>
+
+      <a href="MyReports.php" class="nav-link active">
+        <i class="fa-regular fa-clipboard"></i> My Reports
+      </a>
+
+      <a href="Rewards.php" class="nav-link">
+        <i class="fa-regular fa-star"></i> Rewards
+      </a>
+
+      <a href="Notifications.php" class="nav-link">
+        <i class="fa-regular fa-bell"></i> Notifications
+      </a>
+
+      <a href="index.php" class="nav-link logout">
+        <i class="fa-solid fa-right-from-bracket"></i> Log Out
+      </a>
+    </nav>
+
+  </div>
+</header>
+
+<?php endif; ?>
 
 <div class="container main-content" >
-  <div id="actionbtn">
-    
-  </div>
+  <?php if ($_SESSION['role'] == 'admin'): ?>
+<a href="admin.php" class="back-btn">⬅ Back</a>
+<?php else: ?>
+<a href="MyReports.php" class="back-btn">⬅ Back</a>
+<?php endif; ?>
 
   <div class="details-box">
 
@@ -162,129 +250,40 @@ margin-top: 10px;
     </div>
 
     <!-- ACTIONS -->
-    <div class="actions" id="actionsBox">
-      
-    </div>
+    <div class="actions">
+
+<?php if ($_SESSION['role'] == 'admin'): ?>
+
+  <select class="btn">
+    <option>Pending</option>
+    <option>In Progress</option>
+    <option>Completed</option>
+  </select>
+
+<?php else: ?>
+
+  <?php if ($row['status'] != 'Deleted'): ?>
+
+    <button class="btn"
+      onclick="window.location.href='EditReport.php?id=<?= $row['reportID'] ?>'">
+      ✏️ Edit Report
+    </button>
+
+    <form method="POST" onsubmit="return confirm('Are you sure you want to delete this report?')">
+      <input type="hidden" name="delete_id" value="<?= $row['reportID'] ?>">
+      <button type="submit" class="btn btn-danger">🗑 Delete Report</button>
+    </form>
+
+  <?php endif; ?>
+
+<?php endif; ?>
+
+</div>
 
   </div>
 
 </div>
 
-<!-- JS -->
-<script>
-
-const params = new URLSearchParams(window.location.search);
-const role = params.get("role");
-
-const actionsBox = document.getElementById("actionsBox");
-const actionheader = document.getElementById("actionheader");
-const actionbtn = document.getElementById("actionbtn");
-
-if (role === "admin") {
-
-  actionsBox.innerHTML = `
-    <select class="btn">
-      <option>Pending</option>
-      <option>In Progress</option>
-      <option>Completed</option>
-    </select>
-  `;
-
-  actionheader.innerHTML = `
-    <div class="container topbar-inner">
-
-    <div class="brand">
-      <a href ="admin-dashboard.php"><img src="images/logo.png" alt="Logo"></a>
-      <span class="brand-text"><a href ="admin-dashboard.php">Rasheed</span></a>
-    </div>
-    <nav class="nav-links">
-      <a href="index.php" class="nav-link logout">
-    <i class="fa-solid fa-right-from-bracket"></i> Log Out
-  </a>
-</nav>
-  </div>
-  `;
-
-  actionbtn.innerHTML = `
-  <h1 class="page-title" id="actionbtn">Report Details</h1>
-    <a href="admin-dashboard.php" class="back-btn">
-      <i class="fa-solid fa-arrow-left"></i> Back
-    </a>
-   `;
-
-} else {
-
-  actionsBox.innerHTML = `
-  <button class="btn" onclick="window.location.href='EditReport.php?id=<?= $row['reportID'] ?>'">✏️ Edit Report</button>
-    <form method="POST" onsubmit="return confirm('Are you sure you want to delete this report?')">
-  <input type="hidden" name="delete_id" value="<?= $row['reportID'] ?>">
-  <button type="submit" class="btn btn-danger">🗑 Delete Report</button>
-</form>
-`;
-
-actionheader.innerHTML = `
-    <div class="container topbar-inner">
-
-    <div class="brand">
-      <a href ="main.php"><img src="images/logo.png" alt="Logo"></a>
-      <span class="brand-text"><a href ="main.php">Rasheed</span></a>
-    </div>
-    <nav class="nav-links">
-      <a href="AddReport.php" class="nav-link">
-    <i class="fa-regular fa-file-lines"></i> Add Report
-  </a>
-
-  <a href="MyReports.php" class="nav-link active">
-    <i class="fa-regular fa-clipboard"></i> My Reports
-  </a>
-
-  <a href="rewards.php" class="nav-link">
-    <i class="fa-regular fa-star"></i> Rewards
-  </a>
-
-  <a href="Notifications.php" class="nav-link">
-    <i class="fa-regular fa-bell"></i> Notifications
-  </a> 
-      <a href="index.php" class="nav-link logout">
-    <i class="fa-solid fa-right-from-bracket"></i> Log Out
-  </a>
-</nav>
-  </div>
-  `;
-
-  actionbtn.innerHTML = `
-  <h1 class="page-title" id="actionbtn">Report Details</h1>
-<a href="MyReports.php" class="back-btn">
-      <i class="fa-solid fa-arrow-left"></i> Back
-    </a>
-`;
-}
-
-  function goToEdit() {
-  window.location.href = "edit-report.php?id=RPT-<?= $row['reportID'] ?>";
-}
-
-/*function deleteReport() {
-
-  let confirmDelete = confirm("Are you sure you want to delete this report?");
-
-  if (confirmDelete) {
-
-    let msg = document.createElement("p");
-    msg.textContent = "Report deleted successfully!";
-    msg.className = "status-text completed";
-
-    document.querySelector(".actions").appendChild(msg);
-
-    setTimeout(() => {
-      window.location.href = "MyReports.php";
-    }, 600);
-
-  }
-
-}*/
-
-</script>
 <footer class="footer">
   <div class="footer-container">
 

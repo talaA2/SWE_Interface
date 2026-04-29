@@ -1,3 +1,25 @@
+<?php
+include "db.php";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_id'])) {
+
+  $delete_id = $_POST['delete_id'];
+
+  $sql = "DELETE FROM report WHERE reportID = '$delete_id'";
+  $conn->query($sql);
+
+  header("Location: MyReports.php");
+  exit();
+}
+
+$id = $_GET['id'];
+
+$sql = "SELECT * FROM report WHERE reportID = '$id'";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -83,21 +105,21 @@ margin-top: 10px;
     <div style="display:flex; align-items:center; gap:10px;">
       <div class="icon">💧</div>
       <div>
-        <h2 style="margin:0;">RPT-01</h2>
-        <span style="color:gray;">Water Issue</span>
+        <h2 style="margin:0;">RPT-<?= $row['reportID'] ?></h2>
+        <span style="color:gray;"><?= $row['type'] ?>  Issue</span>
       </div>
     </div>
 
     <!-- STATUS -->
     <div style="margin-top:15px;">
-      <span class="badge" style="background:#eee;">Pending</span>
-      <span class="badge medium">Medium</span>
+      <span class="badge" style="background:#eee;"><?= $row['status'] ?></span>
+      <span class="badge <?= strtolower($row['severity']) ?>"> <?= $row['severity'] ?></span>
     </div>
 
     <!-- DESCRIPTION -->
     <div style="margin-top:20px;">
       <p class="label">DESCRIPTION</p>
-      <p>Water leakage near house</p>
+      <p><?= $row['description'] ?></p>
     </div>
 
     <!-- LOCATION -->
@@ -107,19 +129,19 @@ margin-top: 10px;
       <table class="location-table">
         <tr>
           <td class="label">City</td>
-          <td>Riyadh</td>
+          <td><?= $row['city'] ?></td>
         </tr>
         <tr>
           <td class="label">Neighborhood</td>
-          <td>Al Yasmin</td>
+          <td><?= $row['neighborhood'] ?></td>
         </tr>
         <tr>
           <td class="label">Street</td>
-          <td>Street 12</td>
+          <td><?= $row['street'] ?></td>
         </tr>
         <tr>
           <td class="label">Building</td>
-          <td>8</td>
+          <td><?= $row['building_no'] ?></td>
         </tr>
       </table>
     </div>
@@ -127,7 +149,7 @@ margin-top: 10px;
     <!-- DATE -->
     <div style="margin-top:20px;">
       <p class="label">SUBMITTED</p>
-      <p>Apr 4, 2026</p>
+      <p><?= $row['created_at'] ?></p>
     </div>
 
     <!-- PHOTO -->
@@ -135,7 +157,7 @@ margin-top: 10px;
       <p class="label">PHOTO</p>
 
       <div class="photo-box">
-        <img src="images/report-det.png">
+        <img src="uploads/<?= $row['image'] ?>">
       </div>
     </div>
 
@@ -172,11 +194,11 @@ if (role === "admin") {
     <div class="container topbar-inner">
 
     <div class="brand">
-      <a href ="admin-dashboard.html"><img src="images/logo.png" alt="Logo"></a>
-      <span class="brand-text"><a href ="admin-dashboard.html">Rasheed</span></a>
+      <a href ="admin-dashboard.php"><img src="images/logo.png" alt="Logo"></a>
+      <span class="brand-text"><a href ="admin-dashboard.php">Rasheed</span></a>
     </div>
     <nav class="nav-links">
-      <a href="index.html" class="nav-link logout">
+      <a href="index.php" class="nav-link logout">
     <i class="fa-solid fa-right-from-bracket"></i> Log Out
   </a>
 </nav>
@@ -185,7 +207,7 @@ if (role === "admin") {
 
   actionbtn.innerHTML = `
   <h1 class="page-title" id="actionbtn">Report Details</h1>
-    <a href="admin-dashboard.html" class="back-btn">
+    <a href="admin-dashboard.php" class="back-btn">
       <i class="fa-solid fa-arrow-left"></i> Back
     </a>
    `;
@@ -193,16 +215,19 @@ if (role === "admin") {
 } else {
 
   actionsBox.innerHTML = `
-  <button class="btn" onclick="window.location.href='EditReport.html'">✏️ Edit Report</button>
-  <button class="btn btn-danger" onclick="deleteReport()">🗑 Delete Report</button>
+  <button class="btn" onclick="window.location.href='EditReport.php?id=<?= $row['reportID'] ?>'">✏️ Edit Report</button>
+    <form method="POST" onsubmit="return confirm('Are you sure you want to delete this report?')">
+  <input type="hidden" name="delete_id" value="<?= $row['reportID'] ?>">
+  <button type="submit" class="btn btn-danger">🗑 Delete Report</button>
+</form>
 `;
 
 actionheader.innerHTML = `
     <div class="container topbar-inner">
 
     <div class="brand">
-      <a href ="main.html"><img src="images/logo.png" alt="Logo"></a>
-      <span class="brand-text"><a href ="main.html">Rasheed</span></a>
+      <a href ="main.php"><img src="images/logo.png" alt="Logo"></a>
+      <span class="brand-text"><a href ="main.php">Rasheed</span></a>
     </div>
     <nav class="nav-links">
       <a href="AddReport.php" class="nav-link">
@@ -213,14 +238,14 @@ actionheader.innerHTML = `
     <i class="fa-regular fa-clipboard"></i> My Reports
   </a>
 
-  <a href="rewards.html" class="nav-link">
+  <a href="rewards.php" class="nav-link">
     <i class="fa-regular fa-star"></i> Rewards
   </a>
 
-  <a href="Notifications.html" class="nav-link">
+  <a href="Notifications.php" class="nav-link">
     <i class="fa-regular fa-bell"></i> Notifications
   </a> 
-      <a href="index.html" class="nav-link logout">
+      <a href="index.php" class="nav-link logout">
     <i class="fa-solid fa-right-from-bracket"></i> Log Out
   </a>
 </nav>
@@ -229,17 +254,17 @@ actionheader.innerHTML = `
 
   actionbtn.innerHTML = `
   <h1 class="page-title" id="actionbtn">Report Details</h1>
-<a href="MyReports.html" class="back-btn">
+<a href="MyReports.php" class="back-btn">
       <i class="fa-solid fa-arrow-left"></i> Back
     </a>
 `;
 }
 
   function goToEdit() {
-  window.location.href = "edit-report.html?id=RPT-01";
+  window.location.href = "edit-report.php?id=RPT-<?= $row['reportID'] ?>";
 }
 
-function deleteReport() {
+/*function deleteReport() {
 
   let confirmDelete = confirm("Are you sure you want to delete this report?");
 
@@ -252,12 +277,12 @@ function deleteReport() {
     document.querySelector(".actions").appendChild(msg);
 
     setTimeout(() => {
-      window.location.href = "MyReports.html";
+      window.location.href = "MyReports.php";
     }, 600);
 
   }
 
-}
+}*/
 
 </script>
 <footer class="footer">

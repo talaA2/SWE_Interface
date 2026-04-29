@@ -5,9 +5,9 @@ include "db.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 if (isset($_SESSION['userID'])) { // if log in completed i will delete all this if, just i will keep:
-  $userID = $_SESSION['userID'];  //$userID = $_SESSION['userID'];
+  $residentID = $_SESSION['userID'];  //$userID = $_SESSION['userID'];
 } else {
-  $userID = 1; // مؤقت لين يخلصون login
+  $residentID = 1; // مؤقت لين يخلصون login
 }
 
   $desc = $_POST['description'];
@@ -29,8 +29,8 @@ if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
   move_uploaded_file($_FILES["photo"]["tmp_name"], $targetFile);
 }
 
-  $sql = "INSERT INTO report (description, type, severity , city, neighborhood, street, building_no, status, image, userID)
-          VALUES ('$desc', '$issueType', '$severity', '$city', '$neighborhood', '$street', '$buildingNo', 'Pending', '$imageName', '$userID')";
+  $sql = "INSERT INTO report (description, type, severity , city, neighborhood, street, building_no, status, image, residentID)
+          VALUES ('$desc', '$issueType', '$severity', '$city', '$neighborhood', '$street', '$buildingNo', 'Pending', '$imageName', '$residentID')";
 
   $conn->query($sql);
 
@@ -58,18 +58,18 @@ if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
   <header class="topbar">
     <div class="container topbar-inner">
       <div class="brand">
-        <a href="main.html">
+        <a href="main.php">
   <img src="images/logo.png" alt="Rasheed Logo">
 </a>
-        <a href="main.html" class="brand-text">Rasheed</a>
+        <a href="main.php" class="brand-text">Rasheed</a>
       </div>
 
       <nav class="nav-links">
         <a href="AddReport.php" class="nav-link active"><i class="fa-regular fa-file-lines"></i> Add Report</a>
         <a href="MyReports.php" class="nav-link"><i class="fa-regular fa-clipboard"></i> My Reports</a>
-        <a href="Rewards.html" class="nav-link"><i class="fa-regular fa-star"></i> Rewards</a>
-        <a href="Notifications.html" class="nav-link"><i class="fa-regular fa-bell"></i> Notifications</a>
-        <a href="index.html" class="nav-link logout"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a>
+        <a href="Rewards.php" class="nav-link"><i class="fa-regular fa-star"></i> Rewards</a>
+        <a href="Notifications.php" class="nav-link"><i class="fa-regular fa-bell"></i> Notifications</a>
+        <a href="index.php" class="nav-link logout"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a>
       </nav>
     </div>
   </header>

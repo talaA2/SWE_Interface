@@ -1,3 +1,6 @@
+<?php
+$error = $_GET['error'] ?? '';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -145,28 +148,34 @@
     <h2>Welcome back</h2>
     <p class="subtitle">Log in to your account</p>
 
-    <form id="loginForm">
+    <form id="loginForm" method="POST" action="process_login.php">
 
       <div class="form-group">
         <label>Phone Number</label>
-        <input type="text" id="phone" placeholder="05XXXXXXXX">
+        <input type="text" id="phone" name="phoneNumber" placeholder="05XXXXXXXX">
       </div>
 
       <div class="form-group">
         <label>Password</label>
-        <input type="password" id="password" placeholder="Enter your password">
+        <input type="password" id="password" name="password" placeholder="Enter your password">
       </div>
 
-      <button class="btn">Log In</button>
+      <!-- إضافة بدون حذف -->
+      <input type="hidden" name="isAdmin" id="isAdmin" value="0">
+
+      <button class="btn" type="submit">Log In</button>
+
       <button type="button" class="btn btn-admin" onclick="loginAsAdmin()">
         Log in as Admin</button>
 
-      <div class="error" id="errorMsg"></div>
+      <div class="error" id="errorMsg">
+        <?php echo $error; ?>
+      </div>
 
     </form>
 
     <div class="signup-link">
-      Don't have an account? <a href="register.html">Sign up</a>
+      Don't have an account? <a href="register.php">Sign up</a>
     </div>
 
   </div>
@@ -179,12 +188,11 @@
 
 function loginAsAdmin() {
   isAdmin = true;
-  document.getElementById("loginForm").dispatchEvent(new Event("submit"));
+  document.getElementById("isAdmin").value = "1";
+  document.getElementById("loginForm").submit();
 }
 
-
     form.addEventListener("submit", function(e) {
-      e.preventDefault();
 
       let phone = document.getElementById("phone").value.trim();
       let password = document.getElementById("password").value.trim();
@@ -193,19 +201,16 @@ function loginAsAdmin() {
 
       if (phone === "" || password === "") {
         errorMsg.textContent = "Please fill all fields";
+        e.preventDefault();
         return;
       }
 
       if (!phone.startsWith("05") || phone.length !== 10) {
         errorMsg.textContent = "Invalid phone number";
+        e.preventDefault();
         return;
       }
 
-      if (isAdmin) {
-    window.location.href = "admin-dashboard.html";
-  } else {
-    window.location.href = "main.html";
-  }
 });
   </script>
 

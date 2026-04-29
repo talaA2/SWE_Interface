@@ -3,12 +3,12 @@ session_start();
 include "db.php";
 
 if (isset($_SESSION['userID'])) { //delete
-  $userID = $_SESSION['userID']; //keep
+  $residentID  = $_SESSION['userID']; //keep
 } else { //delete
-  $userID = 1; // مؤقت delete
+  $residentID = 1; // مؤقت delete
 } //delete
 
-$sql = "SELECT * FROM report WHERE userID = '$userID' ORDER BY reportID DESC";
+$sql = "SELECT * FROM report WHERE residentID = '$residentID' ORDER BY reportID DESC";
 $result = $conn->query($sql);
 ?>
 
@@ -31,16 +31,16 @@ $result = $conn->query($sql);
 <header class="topbar">
     <div class="container topbar-inner">
       <div class="brand">
-        <a href ="main.html"><img src="images/logo.png" alt="Logo"></a>
-      <span class="brand-text"><a href ="main.html">Rasheed</span></a>
+        <a href ="main.php"><img src="images/logo.png" alt="Logo"></a>
+      <span class="brand-text"><a href ="main.php">Rasheed</span></a>
       </div>
 
       <nav class="nav-links">
         <a href="AddReport.php" class="nav-link "><i class="fa-regular fa-file-lines"></i> Add Report</a>
         <a href="MyReports.php" class="nav-link active"><i class="fa-regular fa-clipboard"></i> My Reports</a>
-        <a href="Rewards.html" class="nav-link"><i class="fa-regular fa-star"></i> Rewards</a>
-        <a href="Notifications.html" class="nav-link"><i class="fa-regular fa-bell"></i> Notifications</a>
-        <a href="index.html" class="nav-link logout"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a>
+        <a href="Rewards.php" class="nav-link"><i class="fa-regular fa-star"></i> Rewards</a>
+        <a href="Notifications.php" class="nav-link"><i class="fa-regular fa-bell"></i> Notifications</a>
+        <a href="index.php" class="nav-link logout"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a>
       </nav>
     </div>
   </header>

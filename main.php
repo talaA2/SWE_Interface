@@ -1,3 +1,30 @@
+<?php
+session_start();
+include "db.php";
+
+$residentID = $_SESSION['userID'] ?? 1;
+
+// عدد التقارير
+$sql1 = "SELECT COUNT(*) as total FROM report WHERE residentID='$residentID'";
+$res1 = $conn->query($sql1);
+$totalReports = $res1->fetch_assoc()['total'];
+
+// النقاط
+$sql2 = "SELECT points FROM resident WHERE residentID='$residentID'";
+$res2 = $conn->query($sql2);
+$points = $res2->fetch_assoc()['points'] ?? 0;
+
+// آخر التقارير
+$sql3 = "SELECT * FROM report WHERE residentID='$residentID' ORDER BY reportID DESC LIMIT 3";
+$reports = $conn->query($sql3);
+
+$sqlUser = "SELECT firstName, lastName FROM user WHERE userID='$residentID'";
+$resUser = $conn->query($sqlUser);
+$user = $resUser->fetch_assoc();
+
+$name = $user['firstName'] . " " . $user['lastName'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,11 +56,11 @@
       </div>
 
       <nav class="nav-links">
-        <a href="AddReport.html" class="nav-link "><i class="fa-regular fa-file-lines"></i> Add Report</a>
-        <a href="MyReports.html" class="nav-link"><i class="fa-regular fa-clipboard"></i> My Reports</a>
-        <a href="Rewards.html" class="nav-link"><i class="fa-regular fa-star"></i> Rewards</a>
-        <a href="Notifications.html" class="nav-link"><i class="fa-regular fa-bell"></i> Notifications</a>
-        <a href="index.html" class="nav-link logout"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a>
+        <a href="AddReport.php" class="nav-link "><i class="fa-regular fa-file-lines"></i> Add Report</a>
+        <a href="MyReports.php" class="nav-link"><i class="fa-regular fa-clipboard"></i> My Reports</a>
+        <a href="Rewards.php" class="nav-link"><i class="fa-regular fa-star"></i> Rewards</a>
+        <a href="Notifications.php" class="nav-link"><i class="fa-regular fa-bell"></i> Notifications</a>
+        <a href="index.php" class="nav-link logout"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a>
       </nav>
     </div>
   </header>
@@ -41,7 +68,7 @@
   <!-- Hero -->
   <section class="hero">
     <div class="container hero-content">
-      <h1>Welcome back, Tala Alqahtani!</h1>
+      <h1>Welcome back, <?= $name ?>!</h1>
       <p>Here's an overview of your reporting activity.</p>
     </div>
     <div class="hero-curve"></div>
@@ -53,7 +80,7 @@
       <div class="card stat-card">
         <div>
           <p>Total Reports</p>
-          <h2>3</h2>
+          <h2><?= $totalReports ?></h2>
         </div>
         <div class="icon-box green-box">
           <i class="fa-regular fa-file-lines"></i>
@@ -63,7 +90,7 @@
       <div class="card stat-card">
         <div>
           <p>Points Earned</p>
-          <h2>10</h2>
+          <h2><?= $points ?></h2>
         </div>
         <div class="icon-box blue-box">
           <i class="fa-regular fa-star"></i>
@@ -84,17 +111,59 @@
     <section class="reports-section">
   <div class="section-header">
     <h2>Recent Reports</h2>
-    <a href="MyReports.html" class="view-all">View all →</a>
+    <a href="MyReports.php" class="view-all">View all →</a>
   </div>
 
 <div class="reports-box" style="display:flex; flex-direction:column; width:100%;">
+
+<?php if ($reports->num_rows == 0): ?>
+
+<div class="empty-state">
+  <div class="empty-icon">📋</div>
+  <p>No reports yet.</p>
+  <a href="AddReport.php" class="submit-link">Add a report →</a>
+</div>
+
+<?php else: ?>
+
+<?php while($row = $reports->fetch_assoc()): ?>
+
+<a href="report-det.php?id=<?= $row['reportID'] ?>" class="report-card">
+
+  <div class="icon">
+    <?= $row['type'] == "Water" ? "💧" : "⚡" ?>
+  </div>
+
+  <div class="info">
+    <div class="top">
+      <b>RPT-<?= $row['reportID'] ?></b>
+      <span class="badge <?= strtolower($row['severity']) ?>">
+        <?= $row['severity'] ?>
+      </span>
+    </div>
+
+    <div class="meta"><?= $row['description'] ?></div>
+    <div class="meta"><?= $row['city'] ?></div>
+  </div>
+
+  <div class="status-text <?= strtolower($row['status']) ?>">
+    <?= $row['status'] ?>
+  </div>
+
+</a>
+
+<hr>
+
+<?php endwhile; ?>
+
+<?php endif; ?>
    <!-- <div class="empty-state">
       <div class="empty-icon">📋</div>
       <p>No reports yet. Start by submitting your first report.</p>
       <a href="AddReport.html" class="submit-link">Add a report →</a>
     </div> -->
 
-<a href="report-det.html?role=user"
+<!--<a href="report-det.php?role=user"
      class="report-card"
      data-type="water"
      data-severity="medium">
@@ -115,7 +184,7 @@
 
   </a>
 <hr>
-  <a href="report-det2.html?role=user"
+  <a href="report-det2.php?role=user"
      class="report-card"
      data-type="electricity"
      data-severity="high">
@@ -134,7 +203,7 @@
 
     <div class="status-text progress">In Progress</div>
 
-  </a>
+  </a>-->
   
   </div>
 </section>

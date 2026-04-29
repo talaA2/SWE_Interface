@@ -2,13 +2,18 @@
 session_start();
 include "db.php";
 
-if (isset($_SESSION['userID'])) { //delete
-  $residentID  = $_SESSION['userID']; //keep
-} else { //delete
-  $residentID = 1; // مؤقت delete
-} //delete
+if (!isset($_SESSION['userID'])) {
+  header("Location: login.php");
+  exit();
+}
 
-$sql = "SELECT * FROM report WHERE residentID = '$residentID' ORDER BY reportID DESC";
+$residentID = $_SESSION['userID'];
+
+$sql = "SELECT * FROM report 
+        WHERE residentID = '$residentID' 
+        AND NOT (status = 'Deleted' AND deletedByUser = 1)
+        ORDER BY reportID DESC";
+
 $result = $conn->query($sql);
 ?>
 
@@ -102,7 +107,7 @@ $result = $conn->query($sql);
 </a>
 
 <?php endwhile; ?>
-  </div>
+
   <!-- REPORTS -->
 <!--
   <a href="report-det.html?role=user"

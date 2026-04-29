@@ -340,7 +340,7 @@ function formatSeverity($severity) {
 
       <?php if ($role === 'admin') { ?>
 
-        <?php if ($row['status'] !== 'Completed') { ?>
+        <?php if ($row['status'] !== 'Completed' && $row['status'] !== 'Deleted') { ?>
           <form class="admin-update-form" action="update_status.php" method="POST">
             <input type="hidden" name="reportID" value="<?php echo htmlspecialchars($row['reportID']); ?>">
 
@@ -353,8 +353,10 @@ function formatSeverity($severity) {
 
             <button type="submit" class="btn">Update Status</button>
           </form>
-        <?php } else { ?>
+        <?php } elseif ($row['status'] === 'Completed') { ?>
           <span class="info-note">No actions available. This report is already completed.</span>
+        <?php } elseif ($row['status'] === 'Deleted') { ?>
+          <span class="info-note">No actions available. This report is already deleted.</span>
         <?php } ?>
 
       <?php } else { ?>

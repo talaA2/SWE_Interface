@@ -47,6 +47,11 @@ if ($oldStatus === "Completed") {
     exit();
 }
 
+if ($oldStatus === "Deleted") {
+    header("Location: admin.php?error=Deleted report cannot be modified");
+    exit();
+}
+
 /* تحديث الحالة */
 $updateSql = "UPDATE report SET status = ? WHERE reportID = ?";
 $updateStmt = $conn->prepare($updateSql);
@@ -103,14 +108,14 @@ if (!$notifStmt) {
 
 $notifStmt->bind_param("iiss", $residentID, $reportID, $message, $notificationType);
 $notifStmt->execute();
-$notifStmt = $conn->prepare($notifSql);
+/*$notifStmt = $conn->prepare($notifSql);
 
 if (!$notifStmt) {
     die("Prepare failed: " . $conn->error);
 }
 
 $notifStmt->bind_param("iiss", $residentID, $reportID, $message, $notificationType);
-$notifStmt->execute();
+$notifStmt->execute();*/
 
 header("Location: admin.php?success=Report status updated successfully");
 exit();

@@ -8,12 +8,24 @@ if (!isset($_SESSION['role'])) {
   exit();
 }
 
-// حذف التقرير
+// تأكد من وجود id
+if (!isset($_GET['id'])) {
+  echo "No report selected";
+  exit();
+}
+
+$id = intval($_GET['id']);
+
+
+// ==============================
+// 🔥 حذف (Soft Delete)
+// ==============================
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_id'])) {
 
-  $delete_id = $_POST['delete_id'];
+  $delete_id = intval($_POST['delete_id']);
 
-  $sql = "DELETE FROM report 
+  $sql = "UPDATE report 
+          SET status = 'Deleted' , deletedByUser = 1
           WHERE reportID = '$delete_id' 
           AND residentID = '{$_SESSION['userID']}'";
 
@@ -23,25 +35,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_id'])) {
   exit();
 }
 
-// جلب التقرير
-if (!isset($_GET['id'])) {
-  echo "No report selected";
-  exit();
-}
 
-$id = $_GET['id'];
-
+// ==============================
+// 📥 جلب التقرير
+// ==============================
 $sql = "SELECT * FROM report WHERE reportID = '$id'";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 
-// لو التقرير غير موجود
+
+// ==============================
+// ❌ إذا ما موجود
+// ==============================
 if (!$row) {
   echo "Report not found";
   exit();
 }
 
-// حماية: المستخدم يشوف بس تقاريره
+
+// ==============================
+// 🔒 حماية المستخدم
+// ==============================
 if ($_SESSION['role'] == 'resident' && $row['residentID'] != $_SESSION['userID']) {
   echo "Access denied";
   exit();
@@ -181,6 +195,7 @@ margin-top: 10px;
 <?php endif; ?>
 
 <div class="container main-content" >
+  <h1 class="page-title">Report Details</h1>
   <?php if ($_SESSION['role'] == 'admin'): ?>
 <a href="admin.php" class="back-btn">⬅ Back</a>
 <?php else: ?>
@@ -191,7 +206,9 @@ margin-top: 10px;
 
     <!-- TITLE -->
     <div style="display:flex; align-items:center; gap:10px;">
-      <div class="icon">💧</div>
+      <div class="icon">
+       <?= $row['type'] == "Water" ? "💧" : "⚡" ?>
+    </div>
       <div>
         <h2 style="margin:0;">RPT-<?= $row['reportID'] ?></h2>
         <span style="color:gray;"><?= $row['type'] ?>  Issue</span>
@@ -262,7 +279,7 @@ margin-top: 10px;
 
 <?php else: ?>
 
-  <?php if ($row['status'] != 'Deleted'): ?>
+  <?php if (!($row['status'] == 'Deleted')&&!($row['status'] == 'Completed')): ?>
 
     <button class="btn"
       onclick="window.location.href='EditReport.php?id=<?= $row['reportID'] ?>'">
@@ -273,7 +290,13 @@ margin-top: 10px;
       <input type="hidden" name="delete_id" value="<?= $row['reportID'] ?>">
       <button type="submit" class="btn btn-danger">🗑 Delete Report</button>
     </form>
+    <?php else: ?>
 
+  <span class="info-note">
+    <?= $row['status'] == 'Completed' 
+        ? 'Completed reports cannot be edited or deleted.' 
+        : 'Deleted reports from admin cannot be edited.' ?>
+  </span>
   <?php endif; ?>
 
 <?php endif; ?>

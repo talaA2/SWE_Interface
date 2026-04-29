@@ -5,7 +5,7 @@ include "db.php";
 $residentID = $_SESSION['userID'] ?? 1;
 
 // عدد التقارير
-$sql1 = "SELECT COUNT(*) as total FROM report WHERE residentID='$residentID'";
+$sql1 = "SELECT COUNT(*) as total FROM report WHERE residentID='$residentID'  AND NOT (status = 'Deleted' AND deletedByUser = 1)";
 $res1 = $conn->query($sql1);
 $totalReports = $res1->fetch_assoc()['total'];
 
@@ -16,7 +16,7 @@ $points = $res2->fetch_assoc()['points'] ?? 0;
 $badgeStatus = ($points >= 100) ? "Unlocked" : "Locked"; //HEREEEEE
 
 // آخر التقارير
-$sql3 = "SELECT * FROM report WHERE residentID='$residentID' ORDER BY reportID DESC LIMIT 3";
+$sql3 = "SELECT * FROM report WHERE residentID='$residentID' AND NOT (status = 'Deleted' AND deletedByUser = 1) ORDER BY reportID DESC LIMIT 3";
 $reports = $conn->query($sql3);
 
 $sqlUser = "SELECT firstName, lastName FROM user WHERE userID='$residentID'";

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 28, 2026 at 12:54 PM
+-- Generation Time: Apr 29, 2026 at 07:31 PM
 -- Server version: 5.7.24
 -- PHP Version: 8.3.1
 
@@ -54,7 +54,8 @@ CREATE TABLE `report` (
   `status` enum('Pending','In Progress','Completed','Deleted') DEFAULT 'Pending',
   `image` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `residentID` int(11) DEFAULT NULL
+  `residentID` int(11) DEFAULT NULL,
+  `deletedByUser` tinyint(4) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

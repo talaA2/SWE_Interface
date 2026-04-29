@@ -4,11 +4,11 @@ include "db.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-if (isset($_SESSION['userID'])) { // if log in completed i will delete all this if, just i will keep:
+//if (isset($_SESSION['userID'])) { // if log in completed i will delete all this if, just i will keep:
   $residentID = $_SESSION['userID'];  //$userID = $_SESSION['userID'];
-} else {
-  $residentID = 1; // مؤقت لين يخلصون login
-}
+//} else {
+ // $residentID = 1; // مؤقت لين يخلصون login
+//}
 
   $desc = $_POST['description'];
   $issueType = $_POST['issueType'];

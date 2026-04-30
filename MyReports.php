@@ -107,74 +107,11 @@ $result = $conn->query($sql);
 </a>
 
 <?php endwhile; ?>
+<p id="noResults" style="display:none; text-align:center; margin-top:20px; color:gray;">
+  No reports found
+</p>
 
-  <!-- REPORTS -->
-<!--
-  <a href="report-det.html?role=user"
-     class="report-card"
-     data-type="water"
-     data-severity="medium">
-
-    <div class="icon">💧</div>
-
-    <div class="info">
-      <div class="top">
-        <b>RPT-01</b>
-        <span class="badge medium">Medium</span>
-      </div>
-
-      <div class="meta">Water leakage near house</div>
-      <div class="meta">Riyadh • Apr 4, 2026</div>
-    </div>
-
-    <div class="status-text pending">Pending</div>
-
-  </a>
-
-  <a href="report-det2.html?role=user"
-     class="report-card"
-     data-type="electricity"
-     data-severity="high">
-
-    <div class="icon">⚡</div>
-
-    <div class="info">
-      <div class="top">
-        <b>RPT-02</b>
-        <span class="badge high">High</span>
-      </div>
-
-      <div class="meta">Power outage in building</div>
-      <div class="meta">Jeddah • Apr 3, 2026</div>
-    </div>
-
-    <div class="status-text progress">In Progress</div>
-
-  </a>
-
-  <a href="report-det3.html?role=user"
-     class="report-card"
-     data-type="water"
-     data-severity="low">
-
-    <div class="icon">💧</div>
-
-    <div class="info">
-      <div class="top">
-        <b>RPT-03</b>
-        <span class="badge low">Low</span>
-      </div>
-
-      <div class="meta">Small pipe issue</div>
-      <div class="meta">Dammam • Apr 2, 2026</div>
-    </div>
-
-    <div class="status-text completed">Completed</div>
-
-  </a> 
-
-</div> -->
-
+ 
 <!-- JS -->
 <script>
 window.addEventListener("DOMContentLoaded", () => {
@@ -187,6 +124,7 @@ function filterReports() {
 
   const type = typeFilter.value;
   const severity = severityFilter.value;
+  let found = false;
 
   cards.forEach(card => {
 
@@ -203,31 +141,50 @@ function filterReports() {
       show = false;
     }
 
-    card.style.display = show ? "flex" : "none";
+    if (show) {
+      card.style.display = "flex";
+      found = true; // 🔥 مهم
+    } else {
+      card.style.display = "none";
+    }
+
 
   });
-
+    noResults.style.display = found ? "none" : "block"; // 🔥 هذا الحل
 }
 
-typeFilter.addEventListener("change", filterReports);
-severityFilter.addEventListener("change", filterReports);
+typeFilter.addEventListener("change", () => {
+  searchInput.value = ""; // 🔥 يمسح السيرتش
+  filterReports();
+});
+
+severityFilter.addEventListener("change", () => {
+  searchInput.value = ""; // 🔥 يمسح السيرتش
+  filterReports();
+});
+//typeFilter.addEventListener("change", filterReports);
+//severityFilter.addEventListener("change", filterReports);
 
     const searchInput = document.getElementById("searchInput");
+    const noResults = document.getElementById("noResults");
 
 searchInput.addEventListener("input", function () {
 
   const value = searchInput.value.toLowerCase();
+  let found = false;
 
   cards.forEach(card => {
     const text = card.innerText.toLowerCase();
 
     if (text.includes(value)) {
       card.style.display = "flex";
+      found = true;
     } else {
       card.style.display = "none";
     }
 
   }); 
+  noResults.style.display = found ? "none" : "block";
 });
 });
 

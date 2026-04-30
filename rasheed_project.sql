@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 29, 2026 at 07:31 PM
+-- Generation Time: Apr 30, 2026 at 03:54 PM
 -- Server version: 5.7.24
 -- PHP Version: 8.3.1
 
@@ -22,6 +22,8 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
+-- NOTE: Predefined users (Jood Abdullah - resident, Sarah Ahmed - admin) are manually inserted into the database
+-- with the hashed password (Jood1234 , Admin12345) . New residents can register and choose their own passwords.
 
 --
 -- Table structure for table `notification`
@@ -97,7 +99,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`userID`, `firstName`, `lastName`, `phoneNumber`, `password`, `role`) VALUES
 (1, 'Jood', 'Abdullah', '0502743878', '$2y$10$/ZmLienwi0NtXNootszmIugwut2vzok27jbcq3qqba56NNf5kucSu', 'resident'),
-(2, 'Admin', 'Admin', '0555555555', '$2y$10$UIPoXkURGrsmawzmlFaPmOxwbB3SArOWoeHxuVyAVG/LAYEG/BWUy', 'admin');
+(2, 'Sarah', 'Ahmed', '0555555555', '$2y$10$UIPoXkURGrsmawzmlFaPmOxwbB3SArOWoeHxuVyAVG/LAYEG/BWUy', 'admin');
 
 --
 -- Indexes for dumped tables

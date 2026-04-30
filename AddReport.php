@@ -1,6 +1,10 @@
 <?php
 session_start();
 include "db.php";
+if (!isset($_SESSION['userID'])) {
+  header("Location: login.php");
+  exit();
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 

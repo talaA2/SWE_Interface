@@ -1,8 +1,11 @@
 <?php
 session_start();
 include "db.php";
-
-$residentID = $_SESSION['userID'] ?? 1;
+ if (!isset($_SESSION['userID']) || $_SESSION['role'] != 'resident') {
+    header("Location: login.php?error=Access denied");
+    exit();
+}
+$residentID = $_SESSION['userID'] ;
 
 $sql1 = "SELECT COUNT(*) as total FROM report WHERE residentID='$residentID'  AND NOT (status = 'Deleted' AND deletedByUser = 1)";
 $res1 = $conn->query($sql1);

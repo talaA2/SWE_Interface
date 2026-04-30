@@ -84,7 +84,7 @@ $row = $result->fetch_assoc();
     <i class="fa-regular fa-bell"></i> Notifications
   </a>
 
-  <a href="index.php" class="nav-link logout">
+  <a href="logout.php" class="nav-link logout">
     <i class="fa-solid fa-right-from-bracket"></i> Log Out
   </a>
 </nav>

@@ -4,11 +4,7 @@ include "db.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-//if (isset($_SESSION['userID'])) { // if log in completed i will delete all this if, just i will keep:
-  $residentID = $_SESSION['userID'];  //$userID = $_SESSION['userID'];
-//} else {
- // $residentID = 1; // مؤقت لين يخلصون login
-//}
+  $residentID = $_SESSION['userID']; 
 
   $desc = $_POST['description'];
   $issueType = $_POST['issueType'];
@@ -239,9 +235,6 @@ form.addEventListener("submit", (e) => {
   return;
 }
 
-  
-  //alert("Report submitted successfully!");
-  //window.location.href = "main.html";
 });
   </script>
 

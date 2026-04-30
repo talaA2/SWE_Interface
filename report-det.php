@@ -2,13 +2,11 @@
 session_start();
 include "db.php";
 
-// تأكد من تسجيل الدخول
 if (!isset($_SESSION['role'])) {
   header("Location: login.php");
   exit();
 }
 
-// تأكد من وجود id
 if (!isset($_GET['id'])) {
   echo "No report selected";
   exit();
@@ -17,9 +15,6 @@ if (!isset($_GET['id'])) {
 $id = intval($_GET['id']);
 
 
-// ==============================
-// 🔥 حذف (Soft Delete)
-// ==============================
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_id'])) {
 
   $delete_id = intval($_POST['delete_id']);
@@ -35,27 +30,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_id'])) {
   exit();
 }
 
-
-// ==============================
-// 📥 جلب التقرير
-// ==============================
 $sql = "SELECT * FROM report WHERE reportID = '$id'";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 
-
-// ==============================
-// ❌ إذا ما موجود
-// ==============================
 if (!$row) {
   echo "Report not found";
   exit();
 }
 
-
-// ==============================
-// 🔒 حماية المستخدم
-// ==============================
 if ($_SESSION['role'] == 'resident' && $row['residentID'] != $_SESSION['userID']) {
   echo "Access denied";
   exit();

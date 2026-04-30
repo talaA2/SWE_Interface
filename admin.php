@@ -5,7 +5,6 @@ ini_set('display_errors', 1);
 session_start();
 include "db.php";
 
-/* حماية صفحة الأدمن */
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: login.php?error=Access denied");
     exit();
@@ -14,7 +13,6 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
 $search = isset($_GET['search']) ? trim($_GET['search']) : "";
 $filter = isset($_GET['filter']) ? trim($_GET['filter']) : "all";
 
-/* الإحصائيات */
 $statsSql = "
     SELECT 
         COUNT(*) AS total_reports,
@@ -37,7 +35,6 @@ $pending = $stats['pending_reports'] ?? 0;
 $progress = $stats['progress_reports'] ?? 0;
 $completed = $stats['completed_reports'] ?? 0;
 
-/* جلب البلاغات */
 $sql = "
     SELECT 
         r.reportID,

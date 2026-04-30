@@ -2,8 +2,6 @@
 session_start();
 include "db.php";
 
-/* TEMPORARY for testing only.
-   Remove this once login sets $_SESSION['userID']. */
 if (!isset($_SESSION['userID'])) {
     header("Location: login.php");
     exit();

@@ -4,18 +4,15 @@ include "db.php";
 
 $residentID = $_SESSION['userID'] ?? 1;
 
-// عدد التقارير
 $sql1 = "SELECT COUNT(*) as total FROM report WHERE residentID='$residentID'  AND NOT (status = 'Deleted' AND deletedByUser = 1)";
 $res1 = $conn->query($sql1);
 $totalReports = $res1->fetch_assoc()['total'];
 
-// النقاط
 $sql2 = "SELECT points FROM resident WHERE residentID='$residentID'";
 $res2 = $conn->query($sql2);
 $points = $res2->fetch_assoc()['points'] ?? 0;
 $badgeStatus = ($points >= 100) ? "Unlocked" : "Locked"; //HEREEEEE
 
-// آخر التقارير
 $sql3 = "SELECT * FROM report WHERE residentID='$residentID' AND NOT (status = 'Deleted' AND deletedByUser = 1) ORDER BY reportID DESC LIMIT 3";
 $reports = $conn->query($sql3);
 
@@ -158,54 +155,7 @@ $name = $user['firstName'] . " " . $user['lastName'];
 <?php endwhile; ?>
 
 <?php endif; ?>
-   <!-- <div class="empty-state">
-      <div class="empty-icon">📋</div>
-      <p>No reports yet. Start by submitting your first report.</p>
-      <a href="AddReport.html" class="submit-link">Add a report →</a>
-    </div> -->
 
-<!--<a href="report-det.php?role=user"
-     class="report-card"
-     data-type="water"
-     data-severity="medium">
-
-    <div class="icon">💧</div>
-
-    <div class="info">
-      <div class="top">
-        <b>RPT-01</b>
-        <span class="badge medium">Medium</span>
-      </div>
-
-      <div class="meta">Water leakage near house</div>
-      <div class="meta">Riyadh • Apr 4, 2026</div>
-    </div>
-
-    <div class="status-text pending">Pending</div>
-
-  </a>
-<hr>
-  <a href="report-det2.php?role=user"
-     class="report-card"
-     data-type="electricity"
-     data-severity="high">
-
-    <div class="icon">⚡</div>
-
-    <div class="info">
-      <div class="top">
-        <b>RPT-02</b>
-        <span class="badge high">High</span>
-      </div>
-
-      <div class="meta">Power outage in building</div>
-      <div class="meta">Jeddah • Apr 3, 2026</div>
-    </div>
-
-    <div class="status-text progress">In Progress</div>
-
-  </a>-->
-  
   </div>
 </section>
   </main>

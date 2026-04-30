@@ -7,7 +7,6 @@ if (!isset($_GET['id'])) {
 
 $id = $_GET['id'];
 
-// 🔥 إذا فيه تعديل
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   $desc = $_POST['description'];
@@ -17,12 +16,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $building = $_POST['building'];
   $severity = $_POST['severity'];
 
-  // نجيب الصورة القديمة
   $old = $conn->query("SELECT image FROM report WHERE reportID='$id'");
   $oldRow = $old->fetch_assoc();
   $imageName = $oldRow['image'];
 
-  // رفع صورة جديدة
   if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
     $targetDir = "uploads/";
     $imageName = time() . "_" . basename($_FILES["photo"]["name"]);
@@ -45,7 +42,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   exit();
 }
 
-// 🔥 جلب البيانات بعد كل شيء
 $sql = "SELECT * FROM report WHERE reportID = '$id'";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
@@ -213,12 +209,6 @@ photoInput.addEventListener("change", () => {
       });
     });
 
-   /* document.getElementById("editReportForm").addEventListener("submit", function(e) {
-      successMessage.textContent = "Report updated successfully!";
-       setTimeout(() => {
-    window.location.href = "MyReports.php";
-  }, 600);
-    });*/
   </script>
 <footer class="footer">
   <div class="footer-container">

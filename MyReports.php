@@ -114,79 +114,47 @@ $result = $conn->query($sql);
  
 <!-- JS -->
 <script>
-window.addEventListener("DOMContentLoaded", () => {
 
 const typeFilter = document.getElementById("typeFilter");
 const severityFilter = document.getElementById("severityFilter");
+const searchInput = document.getElementById("searchInput");
+const noResults = document.getElementById("noResults");
 const cards = document.querySelectorAll(".report-card");
 
-function filterReports() {
-
+function applyFilters() {
   const type = typeFilter.value;
   const severity = severityFilter.value;
+  const search = searchInput.value.trim().toLowerCase();
+
   let found = false;
 
   cards.forEach(card => {
 
     const cardType = card.getAttribute("data-type");
     const cardSeverity = card.getAttribute("data-severity");
+    const text = card.innerText.toLowerCase();
 
     let show = true;
 
-    if (type !== "all" && cardType !== type) {
-      show = false;
-    }
-
-    if (severity !== "all" && cardSeverity !== severity) {
-      show = false;
-    }
+    if (type !== "all" && cardType !== type) show = false;
+    if (severity !== "all" && cardSeverity !== severity) show = false;
+    if (search && !text.includes(search)) show = false;
 
     if (show) {
-      card.style.display = "flex";
-      found = true; // 🔥 مهم
-    } else {
-      card.style.display = "none";
-    }
-
-
-  });
-    noResults.style.display = found ? "none" : "block"; // 🔥 هذا الحل
-}
-
-typeFilter.addEventListener("change", () => {
-  searchInput.value = ""; // 🔥 يمسح السيرتش
-  filterReports();
-});
-
-severityFilter.addEventListener("change", () => {
-  searchInput.value = ""; // 🔥 يمسح السيرتش
-  filterReports();
-});
-//typeFilter.addEventListener("change", filterReports);
-//severityFilter.addEventListener("change", filterReports);
-
-    const searchInput = document.getElementById("searchInput");
-    const noResults = document.getElementById("noResults");
-
-searchInput.addEventListener("input", function () {
-
-  const value = searchInput.value.toLowerCase();
-  let found = false;
-
-  cards.forEach(card => {
-    const text = card.innerText.toLowerCase();
-
-    if (text.includes(value)) {
       card.style.display = "flex";
       found = true;
     } else {
       card.style.display = "none";
     }
 
-  }); 
+  });
+
   noResults.style.display = found ? "none" : "block";
-});
-});
+}
+
+typeFilter.addEventListener("change", applyFilters);
+severityFilter.addEventListener("change", applyFilters);
+searchInput.addEventListener("input", applyFilters);
 
 </script>
 <footer class="footer">

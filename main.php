@@ -61,7 +61,7 @@ $name = $user['firstName'] . " " . $user['lastName'];
         <a href="MyReports.php" class="nav-link"><i class="fa-regular fa-clipboard"></i> My Reports</a>
         <a href="Rewards.php" class="nav-link"><i class="fa-regular fa-star"></i> Rewards</a>
         <a href="Notifications.php" class="nav-link"><i class="fa-regular fa-bell"></i> Notifications</a>
-        <a href="index.php" class="nav-link logout"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a>
+        <a href="logout.php" class="nav-link logout"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a>
       </nav>
     </div>
   </header>

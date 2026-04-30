@@ -34,6 +34,18 @@ if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
 
   $conn->query($sql);
 
+// Get the report ID that was just inserted
+$reportID = $conn->insert_id;
+
+// Create notification for submitted report
+$message = "Your $issueType report has been submitted and is now Pending.";
+$type = "Pending";
+
+$notifSQL = "INSERT INTO notification (message, type, reportID, residentID)
+             VALUES ('$message', '$type', '$reportID', '$residentID')";
+
+$conn->query($notifSQL);
+
   header("Location: MyReports.php");
   exit();
 }

@@ -110,7 +110,7 @@ $result = $conn->query($sql);
 <p id="noResults" style="display:none; text-align:center; margin-top:20px; color:gray;">
   No reports found
 </p>
-
+  </div>
  
 <!-- JS -->
 <script>

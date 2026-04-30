@@ -128,7 +128,7 @@ margin-top: 10px;
     </div>
 
     <nav class="nav-links">
-      <a href="index.php" class="nav-link logout">
+      <a href="logout.php" class="nav-link logout">
         <i class="fa-solid fa-right-from-bracket"></i> Log Out
       </a>
     </nav>

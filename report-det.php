@@ -179,6 +179,11 @@ margin-top: 10px;
 
 <div class="container main-content" >
   <h1 class="page-title">Report Details</h1>
+  
+  <?php if (isset($_GET['updated']) && $_GET['updated'] == 1): ?>
+  <p class="edit-success-message">Report updated successfully!</p>
+<?php endif; ?>
+
   <?php if ($_SESSION['role'] == 'admin'): ?>
 <a href="admin.php" class="back-btn">⬅ Back</a>
 <?php else: ?>

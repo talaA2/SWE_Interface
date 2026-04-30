@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   $conn->query($sql);
 
-  header("Location: report-det.php?id=$id");
+  header("Location: report-det.php?id=$id&updated=1");
   exit();
 }
 
